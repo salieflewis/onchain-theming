@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../styles/theming-test.css';
 import { ConnectKitProvider } from 'connectkit';
 import type { AppProps } from 'next/app';
 import NextHead from 'next/head';
@@ -12,7 +13,7 @@ function App({ Component, pageProps }: AppProps) {
   React.useEffect(() => setMounted(true), []);
   return (
     <WagmiConfig client={client}>
-      <ConnectKitProvider>
+      <ConnectKitProvider theme='auto' mode='light'>
         <NextHead>
           <title>skl-template</title>
         </NextHead>

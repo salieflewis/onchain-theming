@@ -1,0 +1,120 @@
+export const themeRegistryAbi = [
+  { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
+  { inputs: [], name: 'No_Access', type: 'error' },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'sender',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'accessControl',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'bytes',
+        name: 'accessControlInit',
+        type: 'bytes',
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'themeUri',
+        type: 'string',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'themeIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'addressDataContract',
+        type: 'address',
+      },
+    ],
+    name: 'ThemeIndexInit',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'sender',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'string',
+        name: 'themeUri',
+        type: 'string',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'themeIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'addressDataContract',
+        type: 'address',
+      },
+    ],
+    name: 'ThemeIndexUpdated',
+    type: 'event',
+  },
+  {
+    inputs: [
+      { internalType: 'address', name: 'accessControl', type: 'address' },
+      { internalType: 'bytes', name: 'accessControlInit', type: 'bytes' },
+      { internalType: 'string', name: 'themeUri', type: 'string' },
+    ],
+    name: 'initializeThemeIndex',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    name: 'themeDataAccessControl',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    name: 'themeDataInfo',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'themeIndex', type: 'uint256' },
+      { internalType: 'string', name: 'newThemeUri', type: 'string' },
+    ],
+    name: 'updateThemeIndex',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: 'themeIndex', type: 'uint256' }],
+    name: 'viewThemeURI',
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+] as const;

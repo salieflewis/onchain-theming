@@ -11,7 +11,8 @@ const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
 const infuraId = process.env.NEXT_PUBLIC_INFURA_ID;
 
 const { provider, chains } = configureChains(
-  [mainnet, goerli],
+  // mainnet
+  [goerli],
   [
     alchemyProvider({ apiKey: alchemyId as string }),
     infuraProvider({ apiKey: infuraId as string }),

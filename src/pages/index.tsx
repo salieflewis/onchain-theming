@@ -1,14 +1,10 @@
-import { ConnectKitButton } from 'connectkit';
-import { useAccount } from 'wagmi';
-
-import { Account } from '../components';
+import { Navigation, Hero } from '../components';
 
 function Page() {
-  const { isConnected } = useAccount();
   return (
     <>
-      <ConnectKitButton />
-      {isConnected && <Account />}
+      <Navigation />
+      <Hero />
     </>
   );
 }

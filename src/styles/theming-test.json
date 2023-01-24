@@ -1,0 +1,24 @@
+{
+  "colors": {
+    "background": "#e5e5dc",
+    "text": "#1e00ff",
+    "primary": "#e8e8e8",
+    "secondary": "#00ff91"
+  },
+  "fonts": {
+    "heading": "https://zora-prod.mypinata.cloud/ipfs/QmZqLw8ZhzfqWwHbgqqUgqPVfhcbtkaRpyyk73KA2VjA8m/Cargo-DiatypePlusVariable.woff2",
+    "body": "https://zora-prod.mypinata.cloud/ipfs/QmUGSRagGQzCDX2hcKwoGNEr7gTBMz3Nm7UkVZKDPRPQQ2/Gamja_Flower/GamjaFlower-Regular.ttf",
+    "caption": "https://zora-prod.mypinata.cloud/ipfs/QmUGSRagGQzCDX2hcKwoGNEr7gTBMz3Nm7UkVZKDPRPQQ2/Silkscreen/Silkscreen-Bold.ttf"
+  },
+  "font_sizes": {
+    "heading": "62.375px",
+    "body": "21.375px",
+    "caption": "8.75px"
+  },
+  "modifiers": {
+    "border_radius": "24.625px",
+    "shadow_spread": "8px",
+    "shadow_opacity": "0.46",
+    "shadow_color": "8,8,8"
+  }
+}

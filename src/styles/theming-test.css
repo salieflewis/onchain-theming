@@ -1,0 +1,35 @@
+/* :root {
+    --ns__link-default: #aab4b1;
+    --ns__link-current: #ecf1f0;
+    --ns__link-hover: #ecf1f0;
+    
+    --ns__mobile-bg: #ff89de;
+    --ns__mobile-link-current: rgb(248, 248, 248);
+    --ns__mobile-link: rgb(42, 39, 39);
+ 
+    --ns__text-dark: #050a09;
+    --ns__text-light: #ecf1f0;
+
+    --ns__surface-dark: #050a09;
+    --ns__surface-pink: #ff89de;
+  } */
+
+:root {
+  /* TEXT */
+  --theming-test__text-dark: #050a09;
+  /* SURFACE */
+  --theming-test__surface-dark: #050a09;
+}
+
+/* NAV DESKTOP */
+.theming-test-nav__bg {
+  background-color: var(--theming-test__surface-dark);
+}
+/* .ns-nav__item:hover {
+    color: var(--ns__link-hover);
+    font-weight: 600;
+  }
+  .ns-nav__item_current {
+    color: var(--ns__link-current);
+    font-weight: bold;
+  } */
