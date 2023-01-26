@@ -11,15 +11,18 @@ export function Theme() {
     abi: themeRegistryAbi,
     functionName: 'viewThemeURI',
     args: [themeIndex],
+    onSuccess(themingData) {
+      // console.log(themingData
+    }
   });
 
   console.log('Theming Data:', themingData);
 
   return (
     <div>
-      <code>
+      {/* <code>
         <pre>{JSON.stringify(themingData, null, 2)}</pre>
-      </code>
+      </code> */}
     </div>
   );
 }
