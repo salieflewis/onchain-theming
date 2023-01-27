@@ -1,12 +1,10 @@
-import { Navigation, Hero, Storage } from '../components';
+import { Navigation, Hero } from '../components';
 
 function Page() {
   return (
     <>
       <Navigation />
       <Hero />
-      <br></br>
-      <Storage />
     </>
   );
 }
