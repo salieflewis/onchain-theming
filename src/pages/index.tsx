@@ -1,10 +1,11 @@
-import { Navigation, Hero } from '../components';
+import { Navigation, Hero, ColorPicker } from '../components';
 
 function Page() {
   return (
     <>
       <Navigation />
       <Hero />
+      <ColorPicker />
     </>
   );
 }
