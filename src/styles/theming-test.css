@@ -1,15 +1,20 @@
 :root {
   --primary-color: black;
+  --secondary-color : white,
 }
+
 /* NAV DESKTOP */
 .theming-test__header--component {
   background-color: var(--primary-color);
 }
-/* .ns-nav__item:hover {
+
+/* 
+  .ns-nav__item:hover {
     color: var(--ns__link-hover);
     font-weight: 600;
   }
   .ns-nav__item_current {
     color: var(--ns__link-current);
     font-weight: bold;
-  } */
+  } 
+*/

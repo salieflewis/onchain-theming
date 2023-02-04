@@ -1,0 +1,24 @@
+{
+    "colors":{
+        "background": "#E3F2FA",
+        "text": "#121212",
+        "primary": "#121212",
+        "secondary": "#F3FBFF"
+    },
+    "fonts":{
+        "heading": "ipfs://QmTRCE13ormdo7LDVyyKsWpiW2hpS4q5fewhZqP1AQVCBP?filename=Satoshi-Regular.ttf",
+        "body": "ipfs://QmTRCE13ormdo7LDVyyKsWpiW2hpS4q5fewhZqP1AQVCBP?filename=Satoshi-Regular.ttf",
+        "caption": "ipfs://QmVEaa6TPmoBswh7cvmvn7Yhod224XMtXDmDgyQM8mCFkW?filename=SpaceMono-Regular.ttf"
+    },
+    "font_sizes":{
+        "heading": "64px",
+        "body": "18px",
+        "caption": "18px"
+    },
+    "modifiers":{
+        "border_radius": "30px",
+        "shadow_spread": "8px",
+        "shadow_opacity": "0.46",
+        "shadow_color": "8,8,8"
+    }
+}

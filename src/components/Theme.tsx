@@ -4,19 +4,19 @@ import { themeRegistryAbi } from '../abi';
 
 export function Theme() {
     
-  const themeIndex = BigNumber.from('1');
+  const themeIndex = BigNumber.from('3');
 
-  const { data: themingData } = useContractRead({
+  const { data : themeURI } = useContractRead({
     address: '0x430C7019F131cC15A0e43DAFf589f9B09a6684FB',
     abi: themeRegistryAbi,
     functionName: 'viewThemeURI',
     args: [themeIndex],
-    onSuccess(themingData) {
-      // console.log(themingData
-    }
   });
+  console.log('Theme URI:', themeURI);
 
-  console.log('Theming Data:', themingData);
+  // To be used by Navigation Test?
+  const cid = themeURI.split('ipfs://')[1].split('/')[0];
+  console.log('CID:', cid);
 
   return (
     <div>

@@ -15,7 +15,7 @@ function App({ Component, pageProps }: AppProps) {
     <WagmiConfig client={client}>
       <ConnectKitProvider theme='auto' mode='light'>
         <NextHead>
-          <title>skl-template</title>
+          <title>Testing Onchain Theming</title>
         </NextHead>
 
         {mounted && <Component {...pageProps} />}

@@ -1,0 +1,24 @@
+{
+    "colors":{
+        "background":"#E63946",
+        "text":"#F1FAEE",
+        "primary":"#e8e8e8",
+        "secondary":"#00ff91"
+    },
+    "fonts":{
+        "heading":"https://zora-prod.mypinata.cloud/ipfs/QmZqLw8ZhzfqWwHbgqqUgqPVfhcbtkaRpyyk73KA2VjA8m/SpaceMono-Regular.ttf",
+        "body":"https://zora-prod.mypinata.cloud/ipfs/QmUGSRagGQzCDX2hcKwoGNEr7gTBMz3Nm7UkVZKDPRPQQ2/Pirata_One/PirataOne-Regular.ttf",
+        "caption":"https://zora-prod.mypinata.cloud/ipfs/QmUGSRagGQzCDX2hcKwoGNEr7gTBMz3Nm7UkVZKDPRPQQ2/Pangolin/Pangolin-Regular.ttf"
+    },
+    "font_sizes":{
+        "heading":"64px",
+        "body":"18px",
+        "caption":"14px"
+    },
+    "modifiers":{
+        "border_radius":"30px",
+        "shadow_spread":"8px",
+        "shadow_opacity":"0.46",
+        "shadow_color":"8,8,8"
+    }
+}
