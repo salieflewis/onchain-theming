@@ -1,5 +1,5 @@
-import { Web3Storage } from 'web3.storage';
 import * as React from 'react';
+import { Web3Storage } from 'web3.storage';
 
 export function useWeb3Storage(cid: string) {
   const [unpackedMetadata, setUnpackedMetadata] = React.useState<string>('');

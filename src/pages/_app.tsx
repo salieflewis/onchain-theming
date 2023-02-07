@@ -1,9 +1,9 @@
 import '../styles/globals.css';
 import '../styles/theming-test.css';
+import * as React from 'react';
 import { ConnectKitProvider } from 'connectkit';
 import type { AppProps } from 'next/app';
 import NextHead from 'next/head';
-import * as React from 'react';
 import { WagmiConfig } from 'wagmi';
 
 import { client } from '../wagmi';
