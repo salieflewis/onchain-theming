@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useContext, memo } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  memo,
+} from 'react';
 import { BigNumber } from 'ethers';
 import { useContractRead } from 'wagmi';
 import { themeRegistryAbi } from '../abi';
@@ -14,27 +20,30 @@ type ThemeDataProps = {
   themeIndex?: number;
 };
 
-export const ThemeData = memo(function ThemeData({
+export const ThemeProvider = memo(function ThemeProvider({
   children,
   themeIndex,
 }: ThemeDataProps) {
-  const { data: themeData } = useContractRead({
+  const [themeData, setThemeData] = useState<string>('');
+
+  const contractRead = useContractRead({
     address: THEME_REGISTRY,
     abi: themeRegistryAbi,
     functionName: 'viewThemeURI',
     args: [BigNumber.from(themeIndex)],
-    onSuccess(themeData) {
-      console.log(themeData);
+    onSuccess(data) {
+      setThemeData(data.substring('ipfs://'.length));
     },
     onError(error: any) {
       console.log(error);
     },
   });
 
-  const safeThemeData = themeData as string;
+  //   const safeThemeData = themeData as string;
+  //   const safeThemeData = (themeData as string).substring('ipfs://'.length);
 
   return (
-    <ThemeContext.Provider value={{ themeData: safeThemeData }}>
+    <ThemeContext.Provider value={{ themeData }}>
       {children}
     </ThemeContext.Provider>
   );

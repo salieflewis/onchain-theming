@@ -2,24 +2,24 @@ import { ConnectKitButton } from 'connectkit';
 import { useAccount } from 'wagmi';
 import { useWeb3Storage } from '../hooks';
 import { Account } from '../components';
+import { useThemeContext } from '../context/ThemeProvider';
 import * as React from 'react';
 
 export function Navigation() {
   const { isConnected } = useAccount();
 
+  const { themeData } = useThemeContext();
+
   const [primaryColor, setPrimaryColor] = React.useState<string | null>(null);
 
-  const cid = 'bafybeicdumhupgrxwjp2a5ln6t7qhqhfgwbuy7mrikxoyaves2dztao5j4';
-
-  const { unpackedMetadata } = useWeb3Storage(cid);
+  const { unpackedMetadata } = useWeb3Storage(themeData);
 
   console.log('Unpacked metadata:', unpackedMetadata);
 
   React.useEffect(() => {
     if (unpackedMetadata) {
       const parsedMetadata = JSON.parse(unpackedMetadata);
-      console.log('Parsed metadata:', parsedMetadata);
-      setPrimaryColor(parsedMetadata.colors.background);
+      setPrimaryColor(parsedMetadata.theme.color.background);
     }
   }, [unpackedMetadata]);
 

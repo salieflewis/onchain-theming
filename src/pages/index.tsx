@@ -1,12 +1,12 @@
-import { Navigation, Hero, ColorPicker } from '../components';
+import { Navigation, Hero } from '../components';
+import { ThemeProvider } from '../context/ThemeProvider';
 
 function Page() {
   return (
-    <>
+    <ThemeProvider themeIndex={4}>
       <Navigation />
       <Hero />
-      <ColorPicker />
-    </>
+    </ThemeProvider>
   );
 }
 
