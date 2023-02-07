@@ -8,6 +8,7 @@ import React, {
 import { BigNumber } from 'ethers';
 import { useContractRead } from 'wagmi';
 import { themeRegistryAbi } from '../abi';
+import { useWeb3Storage } from '../hooks';
 
 const ThemeContext = createContext({
   themeData: '',
@@ -26,6 +27,12 @@ export const ThemeProvider = memo(function ThemeProvider({
 }: ThemeDataProps) {
   const [themeData, setThemeData] = useState<string>('');
 
+  /**
+   * Parameters derived from IPFS stored theme object
+   */
+  const [background, setBackground] = React.useState<string | null>(null);
+  const [text, setText] = React.useState<string | null>(null);
+
   const contractRead = useContractRead({
     address: THEME_REGISTRY,
     abi: themeRegistryAbi,
@@ -38,6 +45,19 @@ export const ThemeProvider = memo(function ThemeProvider({
       console.log(error);
     },
   });
+
+  const { unpackedMetadata } = useWeb3Storage(themeData);
+
+  React.useEffect(() => {
+    if (unpackedMetadata) {
+      const parsedMetadata = JSON.parse(unpackedMetadata);
+      setBackground(parsedMetadata.theme.color.background);
+      setText(parsedMetadata.theme.color.text);
+    }
+  }, [unpackedMetadata]);
+
+  document.documentElement.style.setProperty('--background', background);
+  document.documentElement.style.setProperty('--text', text);
 
   //   const safeThemeData = themeData as string;
   //   const safeThemeData = (themeData as string).substring('ipfs://'.length);

@@ -1,10 +1,19 @@
 :root {
-  --primary-color: black;
+  --background: black;
+  --text: black;
 }
-/* NAV DESKTOP */
-.theming-test__header--component {
-  background-color: var(--primary-color);
+
+.theming-test__navigation {
+  background-color: var(--background);
+  color: var(--text);
 }
+
+.theming-test__hero {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+
 /* .ns-nav__item:hover {
     color: var(--ns__link-hover);
     font-weight: 600;
