@@ -4,9 +4,9 @@ export function Palette() {
   /**
    * Set state variables for the configurable properties
    */
-  const [background, setBackground] = React.useState('--background');
-  const [text, setText] = React.useState('--text');
-  const [border, setBorder] = React.useState('--border');
+  const [background, setBackground] = React.useState<string>('');
+  const [text, setText] = React.useState<string>('');
+  const [border, setBorder] = React.useState<string>('');
   /**
    * Update CSS variables to reflect the state of the color pickers
    */
