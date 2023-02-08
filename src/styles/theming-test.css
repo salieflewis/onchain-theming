@@ -1,5 +1,5 @@
 :root {
-  --background: black;
+  --background: white;
   --text: black;
   --border: black;
 }
@@ -10,7 +10,7 @@
 }
 
 .theming-test__hero {
-  /* background-color: var(--background); */
+  background-color: var(--background);
   color: var(--text);
 }
 
@@ -18,6 +18,12 @@
   background-color: var(--background);
   color: var(--text);
   border: 2px solid var(--border);
+}
+
+.theming-test__color-picker {
+  appearance: none;
+  --webkit-appearance: none;
+  --moz-appearance: none;
 }
 
 /* .ns-nav__item:hover {

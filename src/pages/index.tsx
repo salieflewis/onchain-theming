@@ -3,10 +3,12 @@ import { ThemeProvider } from '../context/ThemeProvider';
 
 function Page() {
   return (
-    <ThemeProvider themeIndex={4}>
-      <Navigation />
-      <Hero />
-    </ThemeProvider>
+    <div>
+      <ThemeProvider themeIndex={4}>
+        <Navigation />
+        <Hero />
+      </ThemeProvider>
+    </div>
   );
 }
 
