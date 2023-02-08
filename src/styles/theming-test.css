@@ -1,6 +1,7 @@
 :root {
   --background: black;
   --text: black;
+  --border: black;
 }
 
 .theming-test__navigation {
@@ -9,10 +10,15 @@
 }
 
 .theming-test__hero {
-  background-color: var(--background);
+  /* background-color: var(--background); */
   color: var(--text);
 }
 
+.theming-test__palette {
+  background-color: var(--background);
+  color: var(--text);
+  border: 2px solid var(--border);
+}
 
 /* .ns-nav__item:hover {
     color: var(--ns__link-hover);

@@ -32,6 +32,7 @@ export const ThemeProvider = memo(function ThemeProvider({
    */
   const [background, setBackground] = React.useState<string | null>(null);
   const [text, setText] = React.useState<string | null>(null);
+  const [border, setBorder] = React.useState<string | null>(null);
 
   const contractRead = useContractRead({
     address: THEME_REGISTRY,
@@ -53,11 +54,13 @@ export const ThemeProvider = memo(function ThemeProvider({
       const parsedMetadata = JSON.parse(unpackedMetadata);
       setBackground(parsedMetadata.theme.color.background);
       setText(parsedMetadata.theme.color.text);
+      setBorder(parsedMetadata.theme.color.border);
     }
   }, [unpackedMetadata]);
 
   document.documentElement.style.setProperty('--background', background);
   document.documentElement.style.setProperty('--text', text);
+  document.documentElement.style.setProperty('--border', border);
 
   //   const safeThemeData = themeData as string;
   //   const safeThemeData = (themeData as string).substring('ipfs://'.length);
