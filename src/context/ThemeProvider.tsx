@@ -10,15 +10,17 @@ import { useContractRead } from 'wagmi';
 import { stringStorageRegistryAbi } from '../abi';
 import { useWeb3Storage } from '../hooks';
 
-type ThemeDataProps = {
+type ThemeProviderProps = {
   children?: ReactNode;
   platformIndex?: number;
 };
+
 /**
  * Assign default values to the context provider
  */
 const ThemeContext = createContext({
-  themeData: '',
+  themeCID: '',
+  unpackedMetadata: '',
   background: '',
   setBackground: (background: string) => {},
   text: '',
@@ -34,40 +36,46 @@ const ThemeContext = createContext({
 export const ThemeProvider = memo(function ThemeProvider({
   children,
   platformIndex,
-}: ThemeDataProps) {
+}: ThemeProviderProps) {
   /**
    * Read the registry contract defined as an environment variable
    */
   const themeRegistry = process.env
     .NEXT_PUBLIC_REGISTRY_CONTRACT as `0x${string}`;
   /**
-   * Assign a state variable to the theme data object
+   * Assign a state variable to the theme content object
    */
-  const [themeData, setThemeData] = useState<string>('');
+  const [themeCID, setThemeCID] = useState<string>('');
   /**
-   * Parameters derived from IPFS stored theme object
+   * Set state variables for the parameters derived from the theme content object
    */
   const [background, setBackground] = React.useState<string>('');
   const [text, setText] = React.useState<string>('');
   const [accent, setAccent] = React.useState<string>('');
   const [accentText, setAccentText] = React.useState<string>('');
   const [border, setBorder] = React.useState<string>('');
-
+  /**
+   * Read the desired ipfs string from the registry contract
+   */
   const contractRead = useContractRead({
     address: themeRegistry,
     abi: stringStorageRegistryAbi,
     functionName: 'getString',
     args: [BigNumber.from(platformIndex)],
     onSuccess(data) {
-      setThemeData(data.substring('ipfs://'.length));
+      setThemeCID(data.substring('ipfs://'.length));
     },
     onError(error: any) {
       console.log(error);
     },
   });
-
-  const { unpackedMetadata } = useWeb3Storage(themeData);
-
+  /**
+   * Unpack the metadata stored on ipfs
+   */
+  const { unpackedMetadata } = useWeb3Storage(themeCID);
+  /**
+   * Set the state variables to the values fetched from the theme content object
+   */
   React.useEffect(() => {
     if (unpackedMetadata) {
       const parsedMetadata = JSON.parse(unpackedMetadata);
@@ -78,20 +86,20 @@ export const ThemeProvider = memo(function ThemeProvider({
       setBorder(parsedMetadata.theme.color.border);
     }
   }, [unpackedMetadata]);
-
+  /**
+   * Set the variables in the local stylesheet to their corresponding values
+   */
   document.documentElement.style.setProperty('--background', background);
   document.documentElement.style.setProperty('--text', text);
   document.documentElement.style.setProperty('--accent', accent);
   document.documentElement.style.setProperty('--accentText', accentText);
   document.documentElement.style.setProperty('--border', border);
 
-  //   const safeThemeData = themeData as string;
-  //   const safeThemeData = (themeData as string).substring('ipfs://'.length);
-
   return (
     <ThemeContext.Provider
       value={{
-        themeData,
+        themeCID,
+        unpackedMetadata,
         background,
         setBackground,
         text,
