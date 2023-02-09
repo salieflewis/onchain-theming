@@ -4,7 +4,7 @@ import { ThemeProvider } from '../context/ThemeProvider';
 function Page() {
   return (
     <div>
-      <ThemeProvider themeIndex={4}>
+      <ThemeProvider platformIndex={2}>
         <Navigation />
         <Hero />
       </ThemeProvider>

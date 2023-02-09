@@ -1,1 +1,1 @@
-export * from './themeRegistryAbi'
+export * from './stringStorageRegistryAbi'

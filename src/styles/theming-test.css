@@ -1,6 +1,8 @@
 :root {
   --background: white;
   --text: black;
+  --accent: black;
+  --accentText: white;
   --border: black;
 }
 
@@ -24,6 +26,12 @@
   appearance: none;
   --webkit-appearance: none;
   --moz-appearance: none;
+}
+
+.theming-test__button {
+  background-color: var(--accent);
+  color: var(--accentText);
+  border: 2px solid var(--border);
 }
 
 /* .ns-nav__item:hover {
