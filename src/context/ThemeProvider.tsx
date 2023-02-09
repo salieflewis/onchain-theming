@@ -10,37 +10,51 @@ import { useContractRead } from 'wagmi';
 import { stringStorageRegistryAbi } from '../abi';
 import { useWeb3Storage } from '../hooks';
 
-const ThemeContext = createContext({
-  themeData: '',
-  text: '',
-});
-
-const THEME_REGISTRY = '0xD86dA3d1406Eff4F7147B0035F778CB5258CeBf8';
-
 type ThemeDataProps = {
   children?: ReactNode;
   platformIndex?: number;
 };
+/**
+ * Assign default values to the context provider
+ */
+const ThemeContext = createContext({
+  themeData: '',
+  background: '',
+  setBackground: (background: string) => {},
+  text: '',
+  setText: (text: string) => {},
+  accent: '',
+  setAccent: (accent: string) => {},
+  accentText: '',
+  setAccentText: (accentText: string) => {},
+  border: '',
+  setBorder: (border: string) => {},
+});
 
 export const ThemeProvider = memo(function ThemeProvider({
   children,
   platformIndex,
 }: ThemeDataProps) {
   /**
-   * State variable for theme data object
+   * Read the registry contract defined as an environment variable
+   */
+  const themeRegistry = process.env
+    .NEXT_PUBLIC_REGISTRY_CONTRACT as `0x${string}`;
+  /**
+   * Assign a state variable to the theme data object
    */
   const [themeData, setThemeData] = useState<string>('');
   /**
    * Parameters derived from IPFS stored theme object
    */
-  const [background, setBackground] = React.useState<string | null>(null);
+  const [background, setBackground] = React.useState<string>('');
   const [text, setText] = React.useState<string>('');
-  const [accent, setAccent] = React.useState<string | null>(null);
-  const [accentText, setAccentText] = React.useState<string | null>(null);
-  const [border, setBorder] = React.useState<string | null>(null);
+  const [accent, setAccent] = React.useState<string>('');
+  const [accentText, setAccentText] = React.useState<string>('');
+  const [border, setBorder] = React.useState<string>('');
 
   const contractRead = useContractRead({
-    address: THEME_REGISTRY,
+    address: themeRegistry,
     abi: stringStorageRegistryAbi,
     functionName: 'getString',
     args: [BigNumber.from(platformIndex)],
@@ -75,7 +89,21 @@ export const ThemeProvider = memo(function ThemeProvider({
   //   const safeThemeData = (themeData as string).substring('ipfs://'.length);
 
   return (
-    <ThemeContext.Provider value={{ themeData, text }}>
+    <ThemeContext.Provider
+      value={{
+        themeData,
+        background,
+        setBackground,
+        text,
+        setText,
+        accent,
+        setAccent,
+        accentText,
+        setAccentText,
+        border,
+        setBorder,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

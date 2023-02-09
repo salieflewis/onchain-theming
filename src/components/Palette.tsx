@@ -2,23 +2,21 @@ import * as React from 'react';
 import { useThemeContext } from '../context/ThemeProvider';
 
 export function Palette() {
-//   const { text } = useThemeContext()
   /**
-   * Set state variables for the configurable properties
+   * Grab the state variables and setter functions from the ThemeProvider
    */
-  const [background, setBackground] = React.useState<string>('');
-  const [text, setText] = React.useState<string>('');
-  const [accent, setAccent] = React.useState<string>('');
-  const [accentText, setAccentText] = React.useState<string>('');
-  const [border, setBorder] = React.useState<string>('');
-  /**
-   * Update CSS variables to reflect the state of the color pickers
-   */
-  document.documentElement.style.setProperty('--background', background);
-  document.documentElement.style.setProperty('--text', text);
-  document.documentElement.style.setProperty('--accent', accent);
-  document.documentElement.style.setProperty('--accentText', accentText);
-  document.documentElement.style.setProperty('--border', border);
+  const {
+    background,
+    setBackground,
+    text,
+    setText,
+    accent,
+    setAccent,
+    accentText,
+    setAccentText,
+    border,
+    setBorder,
+  } = useThemeContext();
 
   return (
     <div className='theming-test__palette max-w-sm drop-shadow-xl rounded-xl px-8 py-4'>
