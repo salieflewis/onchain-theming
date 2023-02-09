@@ -6,14 +6,14 @@ const client = new NFTStorage({
 });
 
 export function SaveChanges() {
-  const { unpackedMetadata } = useThemeContext();
-  console.log('Theme data before blob:', unpackedMetadata);
+  const { newMetadata } = useThemeContext();
+  console.log('Theme data before blob:', newMetadata);
   async function handleClick() {
     try {
       /**
        * Blob constructor can create blobs from other objects
        */
-      const blobThemeData = new Blob([unpackedMetadata]);
+      const blobThemeData = new Blob([newMetadata]);
       const cid = await client.storeBlob(blobThemeData);
       console.log('Theme data stored at:', cid);
     } catch (err) {

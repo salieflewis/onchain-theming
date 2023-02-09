@@ -20,7 +20,7 @@ type ThemeProviderProps = {
  */
 const ThemeContext = createContext({
   themeCID: '',
-  unpackedMetadata: '',
+  newMetadata: '',
   background: '',
   setBackground: (background: string) => {},
   text: '',
@@ -95,11 +95,19 @@ export const ThemeProvider = memo(function ThemeProvider({
   document.documentElement.style.setProperty('--accentText', accentText);
   document.documentElement.style.setProperty('--border', border);
 
+  const newMetadata = JSON.stringify(
+    {
+      theme: { color: { background, text, accent, accentText, border } },
+    },
+    null,
+    1
+  );
+
   return (
     <ThemeContext.Provider
       value={{
         themeCID,
-        unpackedMetadata,
+        newMetadata,
         background,
         setBackground,
         text,
