@@ -7,7 +7,7 @@ const client = new NFTStorage({
 
 export function SaveChanges() {
   const { newMetadata } = useThemeContext();
-  console.log('Theme data before blob:', newMetadata);
+
   async function handleClick() {
     try {
       /**

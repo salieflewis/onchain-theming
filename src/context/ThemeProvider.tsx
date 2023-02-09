@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { BigNumber } from 'ethers';
 import { useContractRead } from 'wagmi';
-import { stringStorageRegistryAbi } from '../abi';
+import { platformThemeRegistryAbi } from '../abi';
 import { useWeb3Storage } from '../hooks';
 
 type ThemeProviderProps = {
@@ -59,8 +59,8 @@ export const ThemeProvider = memo(function ThemeProvider({
    */
   const contractRead = useContractRead({
     address: themeRegistry,
-    abi: stringStorageRegistryAbi,
-    functionName: 'getString',
+    abi: platformThemeRegistryAbi,
+    functionName: 'getPlatformTheme',
     args: [BigNumber.from(platformIndex)],
     onSuccess(data) {
       setThemeCID(data.substring('ipfs://'.length));

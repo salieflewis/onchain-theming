@@ -1,30 +1,7 @@
-export const stringStorageRegistryAbi = [
+export const platformThemeRegistryAbi = [
   { inputs: [], name: 'RequiresAdmin', type: 'error' },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'platformIndex',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'address',
-        name: 'sender',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'address',
-        name: 'newAdmin',
-        type: 'address',
-      },
-    ],
-    name: 'NewAdmin',
-    type: 'event',
-  },
+  { inputs: [], name: 'RequiresHigherRole', type: 'error' },
+  { inputs: [], name: 'RoleDoesntExist', type: 'error' },
   {
     anonymous: false,
     inputs: [
@@ -48,7 +25,7 @@ export const stringStorageRegistryAbi = [
     anonymous: false,
     inputs: [
       {
-        indexed: false,
+        indexed: true,
         internalType: 'uint256',
         name: 'platformIndex',
         type: 'uint256',
@@ -56,17 +33,79 @@ export const stringStorageRegistryAbi = [
       {
         indexed: false,
         internalType: 'address',
-        name: 'updater',
+        name: 'sender',
         type: 'address',
       },
       {
         indexed: false,
         internalType: 'string',
-        name: 'newValue',
+        name: 'newTheme',
         type: 'string',
       },
     ],
-    name: 'StringStorageUpdated',
+    name: 'PlatformThemeUpdated',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'platformIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'sender',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'account',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'enum PlatformThemeRegistry.Roles',
+        name: 'role',
+        type: 'uint8',
+      },
+    ],
+    name: 'RoleGranted',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'platformIndex',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'sender',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'account',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'enum PlatformThemeRegistry.Roles',
+        name: 'role',
+        type: 'uint8',
+      },
+    ],
+    name: 'RoleRevoked',
     type: 'event',
   },
   {
@@ -79,20 +118,48 @@ export const stringStorageRegistryAbi = [
   {
     inputs: [
       { internalType: 'uint256', name: 'platformIndex', type: 'uint256' },
-      { internalType: 'address', name: 'expectedAdmin', type: 'address' },
     ],
-    name: 'getIsAdmin',
-    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    name: 'getPlatformTheme',
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
   },
   {
     inputs: [
       { internalType: 'uint256', name: 'platformIndex', type: 'uint256' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
-    name: 'getString',
-    outputs: [{ internalType: 'string', name: '', type: 'string' }],
+    name: 'getRole',
+    outputs: [
+      {
+        internalType: 'enum PlatformThemeRegistry.Roles',
+        name: '',
+        type: 'uint8',
+      },
+    ],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'platformIndex', type: 'uint256' },
+      {
+        components: [
+          { internalType: 'address', name: 'account', type: 'address' },
+          {
+            internalType: 'enum PlatformThemeRegistry.Roles',
+            name: 'role',
+            type: 'uint8',
+          },
+        ],
+        internalType: 'struct PlatformThemeRegistry.RoleDetails[]',
+        name: 'roleDetails',
+        type: 'tuple[]',
+      },
+    ],
+    name: 'grantRoles',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -103,7 +170,10 @@ export const stringStorageRegistryAbi = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'string', name: 'uri', type: 'string' }],
+    inputs: [
+      { internalType: 'address', name: 'account', type: 'address' },
+      { internalType: 'string', name: 'uri', type: 'string' },
+    ],
     name: 'newPlatformIndex',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -118,6 +188,13 @@ export const stringStorageRegistryAbi = [
   },
   {
     inputs: [],
+    name: 'platformCounter',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'renounceOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -126,9 +203,9 @@ export const stringStorageRegistryAbi = [
   {
     inputs: [
       { internalType: 'uint256', name: 'platformIndex', type: 'uint256' },
-      { internalType: 'address[]', name: 'newAdmins', type: 'address[]' },
+      { internalType: 'address[]', name: 'accounts', type: 'address[]' },
     ],
-    name: 'setAdmin',
+    name: 'revokeRoles',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -147,7 +224,7 @@ export const stringStorageRegistryAbi = [
       { internalType: 'uint256', name: 'platformIndex', type: 'uint256' },
       { internalType: 'string', name: 'uri', type: 'string' },
     ],
-    name: 'setPlatformIndex',
+    name: 'setPlatformTheme',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
