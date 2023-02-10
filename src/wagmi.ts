@@ -14,12 +14,13 @@ const { chains, provider, webSocketProvider } = configureChains(
     // @ts-ignore
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_KEY }),
   ]
-)
+);
 
 export const client = createClient(
   getDefaultClient({
     appName: 'Onchain Theming',
     autoConnect: true,
+    chains: [goerli],
     provider,
   })
 );
