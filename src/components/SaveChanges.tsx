@@ -24,12 +24,16 @@ export function SaveChanges() {
 
   const [uri, setUri] = React.useState<string>('');
 
-  const { config, error } = usePrepareContractWrite({
-    address: themeRegistry,
-    abi: platformThemeRegistryAbi,
-    functionName: 'setPlatformTheme',
-    args: [BigNumber.from(platformIndex), uri],
-  });
+  const { config, error } = usePrepareContractWrite(
+    uri !== undefined
+      ? {
+          address: themeRegistry,
+          abi: platformThemeRegistryAbi,
+          functionName: 'setPlatformTheme',
+          args: [BigNumber.from(platformIndex), uri],
+        }
+      : undefined
+  );
 
   const { write: setTheme } = useContractWrite(config);
 
