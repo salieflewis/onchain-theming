@@ -35,7 +35,11 @@ export function SaveChanges() {
 
   React.useEffect(() => {
     console.log('How often am I changing?');
-    setTheme?.();
+    if (setTheme) {
+      setTheme();
+    } else {
+      console.log('setTheme is not defined');
+    }
   }, [uri]);
 
   async function handleClick() {
@@ -47,9 +51,10 @@ export function SaveChanges() {
       const cid = await client.storeBlob(blobThemeData);
       console.log('Theme data stored at:', cid);
       /**
-       * Set state variable to cid
+       * Set state variable to cid in uri format
        */
       const uri = 'ipfs://' + cid;
+      console.log('Uri:', uri)
       setUri(uri);
     } catch (err) {
       console.error(err);
