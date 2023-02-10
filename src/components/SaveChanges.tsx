@@ -22,7 +22,21 @@ const platformIndex = process.env.NEXT_PUBLIC_PLATFORM_INDEX as number;
 export function SaveChanges() {
   const { newMetadata } = useThemeContext();
 
-  const [content, setContent] = React.useState<string>('');
+  const [uri, setUri] = React.useState<string>('');
+
+  const { config, error } = usePrepareContractWrite({
+    address: themeRegistry,
+    abi: platformThemeRegistryAbi,
+    functionName: 'setPlatformTheme',
+    args: [BigNumber.from(platformIndex), uri],
+  });
+
+  const { write: setTheme } = useContractWrite(config);
+
+  React.useEffect(() => {
+    console.log('How often am I changing?');
+    setTheme?.();
+  }, [uri]);
 
   async function handleClick() {
     try {
@@ -35,27 +49,18 @@ export function SaveChanges() {
       /**
        * Set state variable to cid
        */
-      setContent(cid);
-      setTheme?.();
+      const uri = 'ipfs://' + cid;
+      setUri(uri);
     } catch (err) {
       console.error(err);
     }
   }
 
-  const { config, error } = usePrepareContractWrite({
-    address: themeRegistry,
-    abi: platformThemeRegistryAbi,
-    functionName: 'setPlatformTheme',
-    args: [BigNumber.from(platformIndex), content],
-  });
-
-  const { write: setTheme } = useContractWrite(config);
-
   return (
     <div>
       <button
         className='theming-test__button mt-4 px-4 py-2 rounded-xl w-full'
-        onClick={() => handleClick()}
+        onClick={handleClick}
       >
         <span className='text-xl'>Save Changes</span>
       </button>
