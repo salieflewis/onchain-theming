@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { NFTStorage } from 'nft.storage';
 import { useThemeContext } from '../context/ThemeProvider';
-import { usePrepareContractWrite, useContractWrite } from 'wagmi';
+import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi';
+import { ConnectKitButton } from 'connectkit';
 import { platformThemeRegistryAbi } from '../abi';
 import { BigNumber } from 'ethers';
 
@@ -20,45 +21,54 @@ const themeRegistry = process.env
 const platformIndex = process.env.NEXT_PUBLIC_PLATFORM_INDEX as number;
 
 export function SaveChanges() {
+  const { isConnected } = useAccount();
   const { newMetadata } = useThemeContext();
 
   const [uri, setUri] = React.useState<string>('');
+  const [themeReady, setThemeReady] = React.useState<boolean>(false);
 
   const { config, error } = usePrepareContractWrite({
     address: themeRegistry,
     abi: platformThemeRegistryAbi,
     functionName: 'setPlatformTheme',
     args: [BigNumber.from(platformIndex), uri],
+    enabled: Boolean(uri),
+    onSuccess() {
+      setThemeReady(true);
+    },
   });
 
   const { write: setTheme } = useContractWrite(config);
 
   React.useEffect(() => {
-    console.log('How often am I changing?');
-    if (setTheme) {
+    if (setTheme && themeReady) {
       setTheme();
-    } else {
-      console.log('setTheme is not defined');
     }
-  }, [uri]);
+    setThemeReady(false);
+    console.log('Theme is ready');
+  }, [themeReady]);
 
   async function handleClick() {
     try {
-      /**
-       * Blob constructor can create blobs from other objects
-       */
       const blobThemeData = new Blob([newMetadata]);
       const cid = await client.storeBlob(blobThemeData);
-      console.log('Theme data stored at:', cid);
+      const uri = 'ipfs://' + cid;
       /**
        * Set state variable to cid in uri format
        */
-      const uri = 'ipfs://' + cid;
-      console.log('Uri:', uri)
       setUri(uri);
+      console.log('Uri:', uri);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  if (!isConnected) {
+    return (
+      <div className='flex justify-center mt-4'>
+        <ConnectKitButton />
+      </div>
+    );
   }
 
   return (
