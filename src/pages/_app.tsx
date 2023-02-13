@@ -1,5 +1,4 @@
 import '../styles/globals.css';
-import '../styles/theming-test.css';
 import * as React from 'react';
 import { ConnectKitProvider } from 'connectkit';
 import type { AppProps } from 'next/app';
