@@ -3,47 +3,44 @@
 @tailwind utilities;
 
 :root {
-    --background: white;
-    --text: black;
-    --accent: black;
-    --accentText: white;
-    --border: black;
-    --font: monospace
-  }
-  
-  .theming-test__navigation {
-    background-color: var(--background);
-    color: var(--text);
-    font-family: var(--font);
-  }
-  
-  .theming-test__hero {
-    background-color: var(--background);
-    color: var(--text);
-  }
-  
-  .theming-test__palette {
-    background-color: white;
-    color: black;
-  }
-  
-  .theming-test__color-picker {
-    appearance: none;
-    --webkit-appearance: none;
-    --moz-appearance: none;
-    width: 40px;
-    height: 42px;
-    background-color: transparent;
-    cursor: pointer;
-  }
+  --background: white;
+  --text: black;
+  --accent: black;
+  --accentText: white;
+  --border: black;
+}
 
-  .theming-test__color-picker::-webkit-color-swatch {
-    border: solid 1px #f6f6f6;
-    border-radius: 8px;
-  }
+.theming-test__navigation {
+  background-color: var(--background);
+  color: var(--text);
+}
 
-  
-  .theming-test__button {
-    background-color: var(--accent);
-    color: var(--accentText);
-  }
+.theming-test__hero {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.theming-test__palette {
+  background-color: white;
+  color: black;
+}
+
+.theming-test__color-picker {
+  appearance: none;
+  --webkit-appearance: none;
+  --moz-appearance: none;
+  width: 40px;
+  height: 42px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.theming-test__color-picker::-webkit-color-swatch {
+  border: solid 1px #f6f6f6;
+  border-radius: 8px;
+}
+
+.theming-test__button {
+  background-color: var(--accent);
+  color: var(--accentText);
+}
