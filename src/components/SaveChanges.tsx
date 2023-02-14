@@ -65,7 +65,7 @@ export function SaveChanges() {
 
   if (!isConnected) {
     return (
-      <div className='flex justify-center mt-4'>
+      <div className='flex justify-center mt-8'>
         <ConnectKitButton />
       </div>
     );
