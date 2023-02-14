@@ -65,7 +65,7 @@ export function SaveChanges() {
 
   if (!isConnected) {
     return (
-      <div className='flex justify-center mt-4'>
+      <div className='flex justify-center mt-8'>
         <ConnectKitButton />
       </div>
     );
@@ -74,10 +74,10 @@ export function SaveChanges() {
   return (
     <div>
       <button
-        className='theming-test__button mt-4 px-4 py-2 rounded-xl w-full'
+        className='bg-black text-white mt-8 px-4 py-2 rounded-3xl w-full hover:bg-[#282828]'
         onClick={handleClick}
       >
-        <span className='text-xl'>Save Changes</span>
+        <span className='text-xl'>Save changes</span>
       </button>
     </div>
   );
