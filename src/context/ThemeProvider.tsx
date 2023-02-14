@@ -1,8 +1,9 @@
-import React, {
+import {
   createContext,
   ReactNode,
   useContext,
   useState,
+  useEffect,
   memo,
 } from 'react';
 import { BigNumber } from 'ethers';
@@ -49,11 +50,11 @@ export const ThemeProvider = memo(function ThemeProvider({
   /**
    * Set state variables for the parameters derived from the theme content object
    */
-  const [background, setBackground] = React.useState<string>('');
-  const [text, setText] = React.useState<string>('');
-  const [accent, setAccent] = React.useState<string>('');
-  const [accentText, setAccentText] = React.useState<string>('');
-  const [border, setBorder] = React.useState<string>('');
+  const [background, setBackground] = useState<string>('');
+  const [text, setText] = useState<string>('');
+  const [accent, setAccent] = useState<string>('');
+  const [accentText, setAccentText] = useState<string>('');
+  const [border, setBorder] = useState<string>('');
   /**
    * Read the desired ipfs string from the registry contract
    */
@@ -76,7 +77,7 @@ export const ThemeProvider = memo(function ThemeProvider({
   /**
    * Set the state variables to the values fetched from the theme content object
    */
-  React.useEffect(() => {
+  useEffect(() => {
     if (unpackedMetadata) {
       const parsedMetadata = JSON.parse(unpackedMetadata);
       setBackground(parsedMetadata.theme.color.background);

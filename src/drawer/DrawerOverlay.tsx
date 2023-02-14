@@ -1,4 +1,3 @@
-import PreventOutsideScroll from 'react-prevent-outside-scroll';
 import { useDrawer } from './useDrawer';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -8,23 +7,21 @@ export function DrawerOverlay({ drawerName }: { drawerName: string }) {
   return (
     <AnimatePresence>
       {drawerName === drawerType && (
-        <PreventOutsideScroll>
-          <motion.div
-            transition={{ duration: 0.5 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100vw',
-              height: '100vh',
-              zIndex: 1000,
-              backdropFilter: 'blur(5px)',
-            }}
-          />
-        </PreventOutsideScroll>
+        <motion.div
+          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 1000,
+            backdropFilter: 'blur(5px)',
+          }}
+        />
       )}
     </AnimatePresence>
   );

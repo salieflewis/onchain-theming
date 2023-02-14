@@ -17,14 +17,16 @@ export type DrawerContextType = [
 ];
 
 export interface DrawerCompositionProps {
-  /** Unique identifier / key for the drawer */
+  // Unique identifier for the drawer
   drawerName: string;
-  /** Content housed inside of drawer */
+  // Content housed inside of the drawer
   content: JSX.Element;
-  /** Contents that will be wrapped by an unstyled button element to open the drawer */
+  // Unstyled button element to open the drawer
   trigger?: JSX.Element;
+  // Unstyled button element to close the drawer
   closeTrigger?: JSX.Element;
-  /** pixel dimension of drawer window (max width) */
+  // Max width of the drawer window
   drawerWidth?: string;
+  // Background color of the drawer window
   bgColor?: string;
 }

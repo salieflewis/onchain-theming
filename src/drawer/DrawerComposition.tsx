@@ -10,8 +10,8 @@ export function DrawerComposition({
   content,
   trigger,
   closeTrigger,
-  drawerWidth = '650px',
-  bgColor = '#fff',
+  drawerWidth = '560px',
+  bgColor = '#F5F6F8',
   ...props
 }: DrawerCompositionProps) {
   const { drawerType, requestClose, requestOpen } = useDrawer();

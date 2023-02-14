@@ -10,12 +10,11 @@
   --border: black;
 }
 
-.theming-test__navigation {
+html {
   background-color: var(--background);
-  color: var(--text);
 }
 
-.theming-test__hero {
+.theming-test__site {
   background-color: var(--background);
   color: var(--text);
 }
