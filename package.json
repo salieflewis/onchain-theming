@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.1.6",
     "connectkit": "^1.1.1",
     "ethers": "^5.7.0",
     "next": "^13.0.0",

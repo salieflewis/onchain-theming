@@ -13,11 +13,13 @@
 .theming-test__navigation {
   background-color: var(--background);
   color: var(--text);
+  font-family: var(--font-family);
 }
 
 .theming-test__hero {
   background-color: var(--background);
   color: var(--text);
+  font-family: var(--font-family);
 }
 
 .theming-test__palette {
@@ -43,4 +45,8 @@
 .theming-test__button {
   background-color: var(--accent);
   color: var(--accentText);
+}
+
+.theming-test__dropdown {
+    
 }

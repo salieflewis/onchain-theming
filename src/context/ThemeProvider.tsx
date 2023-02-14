@@ -9,6 +9,8 @@ import { BigNumber } from 'ethers';
 import { useContractRead } from 'wagmi';
 import { platformThemeRegistryAbi } from '../abi';
 import { useWeb3Storage } from '../hooks';
+import { inter, roboto, rubikGlitch } from '../fonts/fonts';
+import type { NextFont } from '@next/font';
 
 type ThemeProviderProps = {
   children?: ReactNode;
@@ -31,6 +33,8 @@ const ThemeContext = createContext({
   setAccentText: (accentText: string) => {},
   border: '',
   setBorder: (border: string) => {},
+  fontFamily: inter,
+  setFontFamily: (fontFamily: NextFont) => {},
 });
 
 export const ThemeProvider = memo(function ThemeProvider({
@@ -46,6 +50,11 @@ export const ThemeProvider = memo(function ThemeProvider({
    * Assign a state variable to the theme content object
    */
   const [themeCID, setThemeCID] = useState<string>('');
+  /**
+   * Assign a state variable and default value to the font family object
+   */
+  const [fontFamily, setFontFamily] = useState<NextFont>(inter);
+  console.log('Font family:', fontFamily);
   /**
    * Set state variables for the parameters derived from the theme content object
    */
@@ -86,6 +95,14 @@ export const ThemeProvider = memo(function ThemeProvider({
       setBorder(parsedMetadata.theme.color.border);
     }
   }, [unpackedMetadata]);
+
+  document.documentElement.style.setProperty(
+    '--font-family',
+    fontFamily.style.fontFamily
+  );
+
+  // fontFamily.style.fontFamily
+
   /**
    * Set the variables in the local stylesheet to their corresponding values
    */
@@ -97,11 +114,23 @@ export const ThemeProvider = memo(function ThemeProvider({
 
   const newMetadata = JSON.stringify(
     {
-      theme: { color: { background, text, accent, accentText, border } },
+      theme: {
+        color: { background, text, accent, accentText, border },
+        font: { fontFamily: { heading: { fontFamily } } },
+      },
     },
     null,
-    1
+    2
   );
+
+  // {
+  //   theme: {
+  //     color: { background, text, accent, accentText, border },
+  //     font: { fontFamily: { heading: { fontFamily, fontSize, lineHeight } } },
+  //     button: { shape },
+  //     unit: { radius, base }
+  //   },
+  // },
 
   return (
     <ThemeContext.Provider
@@ -118,6 +147,8 @@ export const ThemeProvider = memo(function ThemeProvider({
         setAccentText,
         border,
         setBorder,
+        fontFamily,
+        setFontFamily,
       }}
     >
       {children}

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useThemeContext } from '../context/ThemeProvider';
+import { inter, roboto, rubikGlitch } from '../fonts/fonts';
 
 export function Palette() {
   /**
@@ -16,7 +17,21 @@ export function Palette() {
     setAccentText,
     border,
     setBorder,
+    fontFamily,
+    setFontFamily,
   } = useThemeContext();
+
+  function handleChange(e: any) {
+    if(e.target.value == 'inter') {
+      setFontFamily(inter)
+    }
+    if(e.target.value == 'roboto') {
+      setFontFamily(roboto)
+    }
+    if(e.target.value == 'rubikGlitch') {
+      setFontFamily(rubikGlitch)
+    }
+  }
 
   return (
     <div className='flex flex-col gap-y-4'>
@@ -69,6 +84,14 @@ export function Palette() {
           value={accentText}
           onChange={(e) => setAccentText(e.target.value)}
         />
+      </div>
+      <div className='flex justify-between  items-center gap-x-4 text-xl'>
+        <label>Font family</label>
+        <select id='fontFamily' className='theming-test__dropdown' onChange={(e) => handleChange(e)}>
+          <option value='inter'>Inter</option>
+          <option value='roboto'>Roboto</option>
+          <option value='rubikGlitch'>Rubik Glitch</option>
+        </select>
       </div>
     </div>
   );
