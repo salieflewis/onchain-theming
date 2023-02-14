@@ -9,11 +9,13 @@ specifiers:
   eslint: ^8.15.0
   eslint-config-next: ^12.1.6
   ethers: ^5.7.0
+  framer-motion: ^9.0.2
   next: ^13.0.0
   nft.storage: ^7.0.0
   postcss: ^8.4.21
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-prevent-outside-scroll: ^0.0.2
   tailwindcss: ^3.2.4
   typescript: ^4.6.4
   wagmi: ~0.10.0
@@ -22,10 +24,12 @@ specifiers:
 dependencies:
   connectkit: 1.1.1_5kmblmf4xt66inqkrqm7cbzl2m
   ethers: 5.7.2
+  framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
   next: 13.1.4_biqbaboplfbrettd7655fr4n2y
   nft.storage: 7.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-prevent-outside-scroll: 0.0.2_biqbaboplfbrettd7655fr4n2y
   wagmi: 0.10.12_q3rmnbwwunsufccbu3lnf7uwce
   web3.storage: 4.4.0_typescript@4.9.4
 
@@ -4252,6 +4256,21 @@ packages:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
 
+  /framer-motion/9.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-n7ZdIUBrT1xklowQNRQ6/h54+3ysmz422CP0rrhjE1X2tshiJy0WWQ7tv6y/fcOSQd23htNA9vvbUFLYMQ5lEQ==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.15.5
+      hey-listen: 1.0.8
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.4.1
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
   /framesync/6.0.1:
     resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
     dependencies:
@@ -6262,6 +6281,16 @@ packages:
     resolution: {integrity: sha512-g2rtqPjdroaboDKTsJCTlcmtw54E25OjyaunUP0anOZn4Fuo2IKs8BVfe02zVggA/UysbmfSnRJIqtNkAgggNA==}
     dependencies:
       p-defer: 3.0.0
+    dev: false
+
+  /react-prevent-outside-scroll/0.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-4TU1ksgZ5pJ2X9ko1EysObsorNhNKSpr2+POCujKAiIetBZgkw0aiTqQnG55YkCLps0eFkI7dOrEW2f/mNYtiw==}
+    peerDependencies:
+      react: ^15.x
+      react-dom: ^15.x
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-transition-state/1.1.5_biqbaboplfbrettd7655fr4n2y:
