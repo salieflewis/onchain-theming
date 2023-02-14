@@ -11,6 +11,7 @@
   "dependencies": {
     "connectkit": "^1.1.1",
     "ethers": "^5.7.0",
+    "framer-motion": "^9.0.2",
     "next": "^13.0.0",
     "nft.storage": "^7.0.0",
     "react": "^18.2.0",

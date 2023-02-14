@@ -9,6 +9,7 @@ specifiers:
   eslint: ^8.15.0
   eslint-config-next: ^12.1.6
   ethers: ^5.7.0
+  framer-motion: ^9.0.2
   next: ^13.0.0
   nft.storage: ^7.0.0
   postcss: ^8.4.21
@@ -22,6 +23,7 @@ specifiers:
 dependencies:
   connectkit: 1.1.1_5kmblmf4xt66inqkrqm7cbzl2m
   ethers: 5.7.2
+  framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
   next: 13.1.4_biqbaboplfbrettd7655fr4n2y
   nft.storage: 7.0.0
   react: 18.2.0
@@ -4247,6 +4249,21 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       style-value-types: 5.0.0
+      tslib: 2.4.1
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framer-motion/9.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-n7ZdIUBrT1xklowQNRQ6/h54+3ysmz422CP0rrhjE1X2tshiJy0WWQ7tv6y/fcOSQd23htNA9vvbUFLYMQ5lEQ==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.15.5
+      hey-listen: 1.0.8
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       tslib: 2.4.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
