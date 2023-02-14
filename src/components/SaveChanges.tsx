@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { NFTStorage } from 'nft.storage';
+import { Web3Storage } from 'web3.storage';
 import { useThemeContext } from '../context/ThemeProvider';
 import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi';
 import { ConnectKitButton } from 'connectkit';
 import { platformThemeRegistryAbi } from '../abi';
 import { BigNumber } from 'ethers';
 
-const client = new NFTStorage({
-  token: process.env.NEXT_PUBLIC_NFT_STORAGE_KEY as string,
-});
+function getAccessToken() {
+  return process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN;
+}
+
+function makeStorageClient() {
+  return new Web3Storage({ token: getAccessToken() as string });
+}
 /**
  * Read the registry contract defined as an environment variable
  */
@@ -49,9 +53,11 @@ export function SaveChanges() {
   }, [themeReady]);
 
   async function handleClick() {
+    const client = makeStorageClient();
     try {
       const blobThemeData = new Blob([newMetadata]);
-      const cid = await client.storeBlob(blobThemeData);
+      // @ts-ignore
+      const cid = await client.put([blobThemeData], { wrapWithDirectory: false });
       const uri = 'ipfs://' + cid;
       /**
        * Set state variable to cid in uri format
