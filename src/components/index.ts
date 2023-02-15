@@ -1,3 +1,4 @@
+export { CustomConnect } from './CustomConnect'
 export { Drawer } from './Drawer';
 export { Header } from './Header';
 export { Hero } from './Hero';

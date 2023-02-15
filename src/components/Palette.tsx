@@ -19,8 +19,8 @@ export function Palette() {
   } = useThemeContext();
 
   return (
-    <div className='flex flex-col gap-y-4'>
-      <div className='flex justify-between items-center gap-x-32 text-xl'>
+    <div className='flex flex-col gap-y-4 border-2 border-[#f6f6f6] py-4 px-6 rounded-xl'>
+      <div className='flex justify-between items-center gap-x-32 text-lg'>
         <label>Background</label>
         <input
           id='background'
@@ -30,7 +30,7 @@ export function Palette() {
           onChange={(e) => setBackground(e.target.value)}
         />
       </div>
-      <div className='flex justify-between  items-center gap-x-4 text-xl'>
+      <div className='flex justify-between  items-center gap-x-4 text-lg'>
         <label>Text</label>
         <input
           id='text'
@@ -40,7 +40,7 @@ export function Palette() {
           onChange={(e) => setText(e.target.value)}
         />
       </div>
-      <div className='flex justify-between  items-center gap-x-4 text-xl'>
+      <div className='flex justify-between  items-center gap-x-4 text-lg'>
         <label>Border</label>
         <input
           id='border'
@@ -50,7 +50,7 @@ export function Palette() {
           onChange={(e) => setBorder(e.target.value)}
         />
       </div>
-      <div className='flex justify-between items-center gap-x-4 text-xl'>
+      <div className='flex justify-between items-center gap-x-4 text-lg'>
         <label>Accent</label>
         <input
           id='accent'
@@ -60,7 +60,7 @@ export function Palette() {
           onChange={(e) => setAccent(e.target.value)}
         />
       </div>
-      <div className='flex justify-between  items-center gap-x-4 text-xl'>
+      <div className='flex justify-between  items-center gap-x-4 text-lg'>
         <label>Accent text</label>
         <input
           id='accentText'
