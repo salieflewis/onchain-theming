@@ -16,7 +16,18 @@ export function Palette() {
     setAccentText,
     border,
     setBorder,
+    fontFamily,
+    setFontFamily,
   } = useThemeContext();
+
+  function handleFontChange(e: any) {
+    const selectedFont = document.getElementById('fontFamily');
+    // prettier-ignore
+    // @ts-ignore
+    const linkToFont = 'http://dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/' + selectedFont.value + '.ttf';
+    setFontFamily(linkToFont);
+    console.log(linkToFont);
+  }
 
   return (
     <div className='flex flex-col gap-y-4 border-2 border-[#f6f6f6] py-4 px-6 rounded-xl'>
@@ -30,7 +41,7 @@ export function Palette() {
           onChange={(e) => setBackground(e.target.value)}
         />
       </div>
-      <div className='flex justify-between  items-center gap-x-4 text-lg'>
+      <div className='flex justify-between items-center gap-x-4 text-lg'>
         <label>Text</label>
         <input
           id='text'
@@ -40,7 +51,7 @@ export function Palette() {
           onChange={(e) => setText(e.target.value)}
         />
       </div>
-      <div className='flex justify-between  items-center gap-x-4 text-lg'>
+      <div className='flex justify-between items-center gap-x-4 text-lg'>
         <label>Border</label>
         <input
           id='border'
@@ -60,7 +71,7 @@ export function Palette() {
           onChange={(e) => setAccent(e.target.value)}
         />
       </div>
-      <div className='flex justify-between  items-center gap-x-4 text-lg'>
+      <div className='flex justify-between items-center gap-x-4 text-lg'>
         <label>Accent text</label>
         <input
           id='accentText'
@@ -69,6 +80,13 @@ export function Palette() {
           value={accentText}
           onChange={(e) => setAccentText(e.target.value)}
         />
+      </div>
+      <div className='flex justify-between items-center gap-x-4 text-lg'>
+        <label>Font family</label>
+        <select id='fontFamily' onChange={(e) => handleFontChange(e)}>
+          <option value='inter'>Inter</option>
+          <option value='montserrat'>Montserrat</option>
+        </select>
       </div>
     </div>
   );

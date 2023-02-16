@@ -8,10 +8,15 @@
   --accent: black;
   --accentText: white;
   --border: black;
+  /* --font-family: 'dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/dynapuff.ttf'; */
 }
 
 html {
   background-color: var(--background);
+}
+
+.theming-test {
+  font-family: var(--font-family);
 }
 
 .theming-test__site {
