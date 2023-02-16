@@ -56,10 +56,9 @@ export function SaveChanges() {
     const client = makeStorageClient();
     try {
       const blobThemeData = new Blob([newMetadata]);
+      // prettier-ignore
       // @ts-ignore
-      const cid = await client.put([blobThemeData], {
-        wrapWithDirectory: false,
-      });
+      const cid = await client.put([blobThemeData], { wrapWithDirectory: false });
       const uri = 'ipfs://' + cid;
       /**
        * Set state variable to cid in uri format

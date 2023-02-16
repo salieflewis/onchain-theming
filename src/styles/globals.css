@@ -8,10 +8,15 @@
   --accent: black;
   --accentText: white;
   --border: black;
+  /* --font-family: 'system-ui'; */
 }
 
 html {
   background-color: var(--background);
+}
+
+.theming-test {
+  font-family: var(--fontFamily);
 }
 
 .theming-test__site {
@@ -37,6 +42,11 @@ html {
 .theming-test__color-picker::-webkit-color-swatch {
   border: solid 1px #f6f6f6;
   border-radius: 8px;
+}
+
+.theming-test__dropdown {
+  all: unset;
+  width: 100%;
 }
 
 .theming-test__button {

@@ -19,7 +19,6 @@ export function DrawerOverlay({ drawerName }: { drawerName: string }) {
             width: '100vw',
             height: '100vh',
             zIndex: 1000,
-            backdropFilter: 'blur(5px)',
           }}
         />
       )}

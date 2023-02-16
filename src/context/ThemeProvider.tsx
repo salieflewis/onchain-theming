@@ -32,6 +32,8 @@ const ThemeContext = createContext({
   setAccentText: (accentText: string) => {},
   border: '',
   setBorder: (border: string) => {},
+  fontFamily: '',
+  setFontFamily: (fontFamily: string) => {},
 });
 
 export const ThemeProvider = memo(function ThemeProvider({
@@ -55,6 +57,7 @@ export const ThemeProvider = memo(function ThemeProvider({
   const [accent, setAccent] = useState<string>('');
   const [accentText, setAccentText] = useState<string>('');
   const [border, setBorder] = useState<string>('');
+  const [fontFamily, setFontFamily] = useState<string>('');
   /**
    * Read the desired ipfs string from the registry contract
    */
@@ -85,6 +88,7 @@ export const ThemeProvider = memo(function ThemeProvider({
       setAccent(parsedMetadata.theme.color.accent);
       setAccentText(parsedMetadata.theme.color.accentText);
       setBorder(parsedMetadata.theme.color.border);
+      setFontFamily(parsedMetadata.theme.font.heading.fontFamily);
     }
   }, [unpackedMetadata]);
   /**
@@ -95,14 +99,29 @@ export const ThemeProvider = memo(function ThemeProvider({
   document.documentElement.style.setProperty('--accent', accent);
   document.documentElement.style.setProperty('--accentText', accentText);
   document.documentElement.style.setProperty('--border', border);
+  document.documentElement.style.setProperty('--fontFamily', fontFamily);
 
   const newMetadata = JSON.stringify(
     {
-      theme: { color: { background, text, accent, accentText, border } },
+      theme: {
+        color: { background, text, accent, accentText, border },
+        font: { heading: { fontFamily } },
+      },
     },
     null,
-    1
+    3
   );
+
+  // prettier-ignore
+  const fontUrl = 'https://dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/' + fontFamily + '.ttf';
+  const rule = `@font-face {
+  font-family: '${fontFamily}';
+  src: url('${fontUrl}') format('woff2');
+  }`;
+
+  const style = document.createElement('style');
+  style.appendChild(document.createTextNode(rule));
+  document.head.appendChild(style);
 
   return (
     <ThemeContext.Provider
@@ -119,6 +138,8 @@ export const ThemeProvider = memo(function ThemeProvider({
         setAccentText,
         border,
         setBorder,
+        fontFamily,
+        setFontFamily,
       }}
     >
       {children}
