@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Web3Storage } from 'web3.storage';
 import { useThemeContext } from '../context/ThemeProvider';
 import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi';
-import { ConnectKitButton } from 'connectkit';
+import { CustomConnect } from './CustomConnect';
 import { platformThemeRegistryAbi } from '../abi';
 import { BigNumber } from 'ethers';
 
@@ -57,7 +57,9 @@ export function SaveChanges() {
     try {
       const blobThemeData = new Blob([newMetadata]);
       // @ts-ignore
-      const cid = await client.put([blobThemeData], { wrapWithDirectory: false });
+      const cid = await client.put([blobThemeData], {
+        wrapWithDirectory: false,
+      });
       const uri = 'ipfs://' + cid;
       /**
        * Set state variable to cid in uri format
@@ -69,21 +71,22 @@ export function SaveChanges() {
     }
   }
 
-  if (!isConnected) {
-    return (
-      <div className='flex justify-center mt-8'>
-        <ConnectKitButton />
-      </div>
-    );
-  }
+  // if (!isConnected) {
+  //   return (
+  //     <div className='flex justify-center mt-8'>
+  //       <CustomConnect />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
       <button
-        className='bg-black text-white mt-8 px-4 py-2 rounded-3xl w-full hover:bg-[#282828]'
+        disabled={!isConnected}
+        className='bg-black text-white mt-8 px-4 py-2 rounded-xl w-full hover:bg-[#282828] font-sans disabled:bg-[#E1E3E7] disabled:text-[#ACB1B9]'
         onClick={handleClick}
       >
-        <span className='text-xl'>Save changes</span>
+        <span className='text-lg'>Save changes</span>
       </button>
     </div>
   );

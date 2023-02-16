@@ -5,20 +5,16 @@ import { SaveChanges } from './SaveChanges';
 import { ThemingButton } from './ThemingButton';
 
 export function Drawer() {
-  const { requestClose } = useDrawer();
-
   return (
     <DrawerComposition
       trigger={<ThemingButton />}
       closeTrigger={
-        <div className='p-4'>
-          <button>
-            <span className='text-xl'>X</span>
-          </button>
-        </div>
+        <button>
+          <span className='text-sm text-[#ACB1B9]'>Close</span>
+        </button>
       }
       content={
-        <div className='flex flex-col justify-between h-full p-6'>
+        <div className='flex flex-col justify-between px-6 pt-2'>
           <Palette />
           <SaveChanges />
         </div>

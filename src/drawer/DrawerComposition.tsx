@@ -10,8 +10,8 @@ export function DrawerComposition({
   content,
   trigger,
   closeTrigger,
-  drawerWidth = '560px',
-  bgColor = '#F5F6F8',
+  drawerWidth = '420px',
+  bgColor = '#FFFFFF',
   ...props
 }: DrawerCompositionProps) {
   const { drawerType, requestClose, requestOpen } = useDrawer();
@@ -23,10 +23,7 @@ export function DrawerComposition({
   return (
     <>
       <div {...props}>
-        <button
-          //   variant={!trigger ? 'primary' : 'unset'}
-          onClick={drawerHandler}
-        >
+        <button onClick={drawerHandler}>
           {trigger ? trigger : `Open ${drawerName}`}
         </button>
       </div>
@@ -53,15 +50,19 @@ export function DrawerComposition({
                   overflowY: 'scroll',
                 }}
               >
-                <div className='sticky flex justify-end top-0 right-0 px-4 z-10'>
-                  <button
-                    // variant={!closeTrigger ? 'primary' : 'unset'}
-                    onClick={requestClose}
-                  >
+                {/* <div className='sticky flex justify-end top-0 right-0 px-4 z-10'> */}
+                <div className='flex justify-between items-center p-6 '>
+                  <div>
+                    <span className='text-2xl cursor-default'>Edit theme</span>
+                  </div>
+                  <button onClick={requestClose}>
                     {closeTrigger ? closeTrigger : `Close`}
                   </button>
                 </div>
-                <div className='relative sm:pb-10 w-100 block'>{content}</div>
+                <div className='w-100 h-100'>
+                  {/* <div className='relative sm:pb-10 w-100 h-100 block'> */}
+                  {content}
+                </div>
               </motion.div>
               <DrawerOverlay drawerName={drawerName} />
             </>
