@@ -16,6 +16,10 @@ function App({ Component, pageProps }: AppProps) {
         <DrawerContextProvider>
           <NextHead>
             <title>Onchain Theming</title>
+            <style>
+            @import url('https://fonts.googleapis.com/css?family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css?family=DM+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap');</style>
           </NextHead>
           {mounted && <Component {...pageProps} />}
         </DrawerContextProvider>
