@@ -24,6 +24,7 @@ export function Palette() {
     const selectedFont = document.getElementById('fontFamily');
     // @ts-ignore
     setFontFamily(selectedFont.value);
+    console.log(fontFamily);
   }
 
   return (
@@ -88,56 +89,56 @@ export function Palette() {
             value={fontFamily}
             onChange={(e) => handleFontChange(e)}
           >
-            <option value='Antonio'>Antonio</option>
-            <option value='Archivo Narrow'>Archivo Narrow</option>
-            <option value='Audiowide'>Audiowide</option>
-            <option value='Ballet'>Ballet</option>
-            <option value='BioRhyme'>BioRhyme</option>
-            <option value='Chicle'>Chicle</option>
-            <option value='Chivo Mono'>Chivo Mono</option>
-            <option value='Cinzel'>Cinzel</option>
-            <option value='Cormorant'>Cormorant</option>
-            <option value='Domine'>Domine</option>
-            <option value='DynaPuff'>DynaPuff</option>
-            <option value='Eczar'>Eczar</option>
-            <option value='Frank Ruhl Libre'>Frank Ruhl Libre</option>
-            <option value='Grandstander'>Grandstander</option>
-            <option value='Hanken Grotesk'>Hanken Grotesk</option>
-            <option value='IBM Plex Mono'>IBM Plex Mono</option>
-            <option value='IBM Plex Sans'>IBM Plex Sans</option>
-            <option value='IBM Plex Serif'>IBM Plex Serif</option>
-            <option value='Inconsolata'>Inconsolata</option>
-            <option value='Inter'>Inter</option>
-            <option value='Jura'>Jura</option>
-            <option value='Kreon'>Kreon</option>
-            <option value='Literata'>Literata</option>
-            <option value='Londrina Solid'>Londrina Solid</option>
-            <option value='Lora'>Lora</option>
-            <option value='Michroma'>Michroma</option>
-            <option value='Montserrat'>Montserrat</option>
-            <option value='Mulish'>Mulish</option>
-            <option value='Newsreader'>Newsreader</option>
-            <option value='Nunito'>Nunito</option>
-            <option value='Open Sans'>Open Sans</option>
-            <option value='Orbitron'>Orbitron</option>
-            <option value='Outfit'>Outfit</option>
-            <option value='Oxanium'>Oxanium</option>
-            <option value='Playfair Display'>Playfair Display</option>
-            <option value='Poppins'>Poppins</option>
-            <option value='Quicksand'>Quicksand</option>
-            <option value='Raleway'>Raleway</option>
-            <option value='Rokkitt'>Rokkitt</option>
-            <option value='Rubik'>Rubik</option>
-            <option value='Saira'>Saira</option>
-            <option value='Sono'>Sono</option>
-            <option value='Sora'>Sora</option>
-            <option value='Space Grotesk'>Space Grotesk</option>
-            <option value='Space Mono'>Space Mono</option>
-            <option value='Stick No Bills'>Stick No Bills</option>
-            <option value='Unbounded'>Unbounded</option>
-            <option value='Unifraktur Maguntia'>Unifraktur Maguntia</option>
-            <option value='Vollkorn'>Vollkorn</option>
-            <option value='Wallpoet'>Wallpoet</option>
+            <option value='antonio'>Antonio</option>
+            <option value='archivonarrow'>Archivo Narrow</option>
+            <option value='audiowide'>Audiowide</option>
+            <option value='ballet'>Ballet</option>
+            <option value='biorhyme'>BioRhyme</option>
+            <option value='chicle'>Chicle</option>
+            <option value='chivomono'>Chivo Mono</option>
+            <option value='cinzel'>Cinzel</option>
+            <option value='cormorant'>Cormorant</option>
+            <option value='domine'>Domine</option>
+            <option value='dynapuff'>DynaPuff</option>
+            <option value='eczar'>Eczar</option>
+            <option value='frankruhllibre'>Frank Ruhl Libre</option>
+            <option value='grandstander'>Grandstander</option>
+            <option value='hankengrotesk'>Hanken Grotesk</option>
+            <option value='ibmplexmono'>IBM Plex Mono</option>
+            <option value='ibmplexsans'>IBM Plex Sans</option>
+            <option value='ibmplexserif'>IBM Plex Serif</option>
+            <option value='inconsolata'>Inconsolata</option>
+            <option value='inter'>Inter</option>
+            <option value='jura'>Jura</option>
+            <option value='kreon'>Kreon</option>
+            <option value='literata'>Literata</option>
+            <option value='londrinasolid'>Londrina Solid</option>
+            <option value='lora'>Lora</option>
+            <option value='michroma'>Michroma</option>
+            <option value='montserrat'>Montserrat</option>
+            <option value='mulish'>Mulish</option>
+            <option value='newsreader'>Newsreader</option>
+            <option value='nunito'>Nunito</option>
+            <option value='opensans'>Open Sans</option>
+            <option value='orbitron'>Orbitron</option>
+            <option value='outfit'>Outfit</option>
+            <option value='oxanium'>Oxanium</option>
+            <option value='playfairdisplay'>Playfair Display</option>
+            <option value='poppins'>Poppins</option>
+            <option value='quicksand'>Quicksand</option>
+            <option value='raleway'>Raleway</option>
+            <option value='rokkitt'>Rokkitt</option>
+            <option value='rubik'>Rubik</option>
+            <option value='saira'>Saira</option>
+            <option value='sono'>Sono</option>
+            <option value='sora'>Sora</option>
+            <option value='spacegrotesk'>Space Grotesk</option>
+            <option value='spacemono'>Space Mono</option>
+            <option value='sticknobills'>Stick No Bills</option>
+            <option value='unbounded'>Unbounded</option>
+            <option value='unifrakturmaguntia'>Unifraktur Maguntia</option>
+            <option value='vollkorn'>Vollkorn</option>
+            <option value='wallpoet'>Wallpoet</option>
           </select>
         </div>
       </div>
