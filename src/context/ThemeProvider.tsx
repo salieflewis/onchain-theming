@@ -32,6 +32,8 @@ const ThemeContext = createContext({
   setAccentText: (accentText: string) => {},
   border: '',
   setBorder: (border: string) => {},
+  fontFamily: '',
+  setFontFamily: (fontFamily: string) => {},
 });
 
 export const ThemeProvider = memo(function ThemeProvider({
@@ -55,6 +57,7 @@ export const ThemeProvider = memo(function ThemeProvider({
   const [accent, setAccent] = useState<string>('');
   const [accentText, setAccentText] = useState<string>('');
   const [border, setBorder] = useState<string>('');
+  const [fontFamily, setFontFamily] = useState<string>('');
   /**
    * Read the desired ipfs string from the registry contract
    */
@@ -95,6 +98,7 @@ export const ThemeProvider = memo(function ThemeProvider({
   document.documentElement.style.setProperty('--accent', accent);
   document.documentElement.style.setProperty('--accentText', accentText);
   document.documentElement.style.setProperty('--border', border);
+  document.documentElement.style.setProperty('--fontFamily', fontFamily);
 
   const newMetadata = JSON.stringify(
     {
@@ -119,6 +123,8 @@ export const ThemeProvider = memo(function ThemeProvider({
         setAccentText,
         border,
         setBorder,
+        fontFamily,
+        setFontFamily
       }}
     >
       {children}
