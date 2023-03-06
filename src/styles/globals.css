@@ -21,6 +21,12 @@ html {
   background-color: var(--background);
 }
 
+.explainer {
+  background-color: var(--accent);
+  color: var(--text);
+  font-family: var(--fontFamily);
+}
+
 .theming-test {
   font-family: var(--fontFamily);
 }
