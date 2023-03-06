@@ -24,7 +24,7 @@ export function Explainer() {
           Here
         </a>{' '}
         you can find the contract that handles which JSON the site reads from,
-        as well as who is allowed to update that information. If you're
+        as well as who is allowed to update that information. If you&apos;re
         interested in gaining those permissions,{' '}
         <a
           className='underline hover:text-[#ACB1B9]'
@@ -34,7 +34,7 @@ export function Explainer() {
         >
           open an issue
         </a>{' '}
-        and I'll add you to the allowlist.
+        and I&apos;ll add you to the allowlist.
       </span>
     </div>
   );
