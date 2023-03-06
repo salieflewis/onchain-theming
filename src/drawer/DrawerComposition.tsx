@@ -50,8 +50,7 @@ export function DrawerComposition({
                   overflowY: 'scroll',
                 }}
               >
-                {/* <div className='sticky flex justify-end top-0 right-0 px-4 z-10'> */}
-                <div className='flex justify-between items-center p-6 '>
+                <div className='theming-test__palette flex justify-between items-center p-6 '>
                   <div>
                     <span className='text-2xl cursor-default'>Edit theme</span>
                   </div>
@@ -59,10 +58,7 @@ export function DrawerComposition({
                     {closeTrigger ? closeTrigger : `Close`}
                   </button>
                 </div>
-                <div className='w-100 h-100'>
-                  {/* <div className='relative sm:pb-10 w-100 h-100 block'> */}
-                  {content}
-                </div>
+                <div className='w-100 h-100'>{content}</div>
               </motion.div>
               <DrawerOverlay drawerName={drawerName} />
             </>

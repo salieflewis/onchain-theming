@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  /* --background: white;
-  --text: black;
-  --accent: black;
-  --accentText: white;
-  --border: black; */
-  /* --font-family: 'system-ui'; */
+  /* --background: white; */
+  /* --text: black; */
+  /* --accent: black; */
+  /* --accentText: white; */
+  /* --border: black; */
+  /* --font-family: 'system-ui' */
 }
 
 html {
@@ -25,6 +25,7 @@ html {
 }
 
 .theming-test__palette {
+  font-family: 'Unifont', sans-serif;
   background-color: white;
   color: black;
 }
