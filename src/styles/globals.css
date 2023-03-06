@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: 'Unifont', sans-serif;
+  }
+}
+
 :root {
   /* --background: white; */
   /* --text: black; */
@@ -22,12 +28,6 @@ html {
 .theming-test__site {
   background-color: var(--background);
   color: var(--text);
-}
-
-.theming-test__palette {
-  font-family: 'Unifont', sans-serif;
-  background-color: white;
-  color: black;
 }
 
 .theming-test__color-picker {

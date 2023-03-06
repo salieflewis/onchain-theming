@@ -50,7 +50,7 @@ export function DrawerComposition({
                   overflowY: 'scroll',
                 }}
               >
-                <div className='theming-test__palette flex justify-between items-center p-6 '>
+                <div className='flex justify-between items-center p-6 '>
                   <div>
                     <span className='text-2xl cursor-default'>Edit theme</span>
                   </div>
