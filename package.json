@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/unifont": "^4.5.5",
     "connectkit": "^1.1.1",
     "ethers": "^5.7.0",
     "framer-motion": "^9.0.2",

@@ -6,6 +6,7 @@ import NextHead from 'next/head';
 import { WagmiConfig } from 'wagmi';
 import { client } from '../wagmi';
 import { DrawerContextProvider } from '../drawer';
+import '@fontsource/unifont';
 
 function App({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = React.useState(false);

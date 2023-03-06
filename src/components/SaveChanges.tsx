@@ -82,7 +82,7 @@ export function SaveChanges() {
     <div>
       <button
         disabled={!isConnected}
-        className='bg-black text-white mt-8 px-4 py-2 rounded-xl w-full hover:bg-[#282828] font-sans disabled:bg-[#E1E3E7] disabled:text-[#ACB1B9]'
+        className='bg-black text-white mt-8 px-4 py-2 rounded-xl w-full hover:bg-[#282828] disabled:bg-[#E1E3E7] disabled:text-[#ACB1B9]'
         onClick={handleClick}
       >
         <span className='text-lg'>Save changes</span>
