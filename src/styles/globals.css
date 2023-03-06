@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: white;
+  /* --background: white;
   --text: black;
   --accent: black;
   --accentText: white;
-  --border: black;
+  --border: black; */
   /* --font-family: 'system-ui'; */
 }
 

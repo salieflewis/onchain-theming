@@ -83,12 +83,12 @@ export const ThemeProvider = memo(function ThemeProvider({
   useEffect(() => {
     if (unpackedMetadata) {
       const parsedMetadata = JSON.parse(unpackedMetadata);
-      setBackground(parsedMetadata.theme.color.background);
-      setText(parsedMetadata.theme.color.text);
-      setAccent(parsedMetadata.theme.color.accent);
-      setAccentText(parsedMetadata.theme.color.accentText);
-      setBorder(parsedMetadata.theme.color.border);
-      setFontFamily(parsedMetadata.theme.font.heading.fontFamily);
+      setBackground(parsedMetadata.theme?.color.background);
+      setText(parsedMetadata.theme?.color.text);
+      setAccent(parsedMetadata.theme?.color.accent);
+      setAccentText(parsedMetadata.theme?.color.accentText);
+      setBorder(parsedMetadata.theme.color?.border);
+      setFontFamily(parsedMetadata.theme.font?.heading.fontFamily);
     }
   }, [unpackedMetadata]);
   /**
