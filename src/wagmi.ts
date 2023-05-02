@@ -6,7 +6,7 @@ import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [goerli],
+  [mainnet, goerli],
   [
     publicProvider(),
     // @ts-ignore
@@ -20,7 +20,7 @@ export const client = createClient(
   getDefaultClient({
     appName: 'Onchain Theming',
     autoConnect: true,
-    chains: [goerli],
+    chains: [mainnet, goerli],
     provider,
   })
 );

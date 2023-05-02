@@ -1,1 +1,1 @@
-export * from './platformThemeRegistryAbi'
+export * from './JSONExtensionRegistryAbi'

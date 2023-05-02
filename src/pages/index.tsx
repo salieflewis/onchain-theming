@@ -7,7 +7,7 @@ function Page() {
 
   return (
     <div>
-      <ThemeProvider platformIndex={platformIndex}>
+      <ThemeProvider targetAddress='0x1ed51f1c554d132b5f62bf7b510ea4bd3e7f004e'>
         <div className='theming-test__site'>
           <Header />
           <Hero />

@@ -1,35 +1,23 @@
-import * as React from 'react';
-import { useThemeContext } from '../context/ThemeProvider';
+import * as React from "react";
+import { useThemeContext } from "../context/ThemeProvider";
 
 export function Palette() {
   /**
    * Grab the state variables and setter functions from the ThemeProvider
    */
-  const {
-    background,
-    setBackground,
-    text,
-    setText,
-    accent,
-    setAccent,
-    accentText,
-    setAccentText,
-    border,
-    setBorder,
-    fontFamily,
-    setFontFamily,
-  } = useThemeContext();
+  // @ts-ignore
+  const { themeParameters, setThemeParamters } = useThemeContext();
 
-  function handleFontChange(e: any) {
-    const selectedFont = document.getElementById('fontFamily');
-    // @ts-ignore
-    setFontFamily(selectedFont.value);
-    console.log(fontFamily);
-  }
+  // function handleFontChange(e: any) {
+  //   const selectedFont = document.getElementById('fontFamily');
+  //   // @ts-ignore
+  //   setFontFamily(selectedFont.value);
+  //   console.log(fontFamily);
+  // }
 
   return (
-    <div className='space-y-4'>
-      <div className='flex flex-col gap-y-4 border-2 border-[#f6f6f6] py-4 px-6 rounded-xl'>
+    <div className="space-y-4">
+      {/* <div className='flex flex-col gap-y-4 border-2 border-[#f6f6f6] py-4 px-6 rounded-xl'>
         <div className='flex justify-between items-center gap-x-32 text-lg'>
           <label>Background</label>
           <input
@@ -141,7 +129,7 @@ export function Palette() {
             <option value='wallpoet'>Wallpoet</option>
           </select>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
