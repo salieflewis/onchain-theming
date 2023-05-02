@@ -1,7 +1,7 @@
 import { DrawerComposition } from "../drawer";
 import { useDrawer } from "../drawer/useDrawer";
 import { Palette } from "./Palette";
-import { SaveChanges } from "./SaveChanges";
+import { Save } from "./Save";
 import { ThemingButton } from "./ThemingButton";
 
 export function Drawer() {
@@ -16,7 +16,7 @@ export function Drawer() {
       content={
         <div className="flex flex-col justify-between px-6 pt-2">
           <Palette />
-          {/* <SaveChanges /> */}
+          <Save />
         </div>
       }
       drawerName={"palette"}

@@ -38,7 +38,7 @@ export function useRetrieve(cid: string) {
 export function useStore(themeParameters: ThemingConfig) {
   const [uri, setUri] = useState<string>("");
 
-  async function handleClick() {
+  async function storeBlob() {
     try {
       // @ts-ignore
       const blobThemeData = new Blob([themeParameters]);
@@ -57,5 +57,5 @@ export function useStore(themeParameters: ThemingConfig) {
     }
   }
 
-  return handleClick;
+  return { storeBlob, uri };
 }
