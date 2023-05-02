@@ -1,6 +1,8 @@
 import {
   createContext,
   ReactNode,
+  Dispatch,
+  SetStateAction,
   useContext,
   useState,
   useEffect,
@@ -31,7 +33,16 @@ import { Hex, ThemingConfig } from "../types";
 //   setFontFamily: (fontFamily: string) => {},
 // });
 
-const ThemeContext = createContext({});
+export type ThemeProviderReturnTypes = {
+  themeCid: string;
+  themingConfig: ThemingConfig;
+  newThemingConfig: ThemingConfig;
+  // setThemingConfig: Dispatch<SetStateAction<ThemingConfig>>;
+  // rome-ignore lint: 
+  setThemingConfig: any;
+};
+
+const ThemeContext = createContext<ThemeProviderReturnTypes | null>(null);
 
 export function ThemeProvider({
   children,
@@ -135,7 +146,7 @@ export function ThemeProvider({
     setCSSVariables(themingConfig);
   }, [themingConfig]);
 
-  // const newMetadata = JSON.stringify(
+  // const newThemingConfig = JSON.stringify(
   //   {
   //     theme: {
   //       color: { background, text, accent, accentText, border },
@@ -145,6 +156,8 @@ export function ThemeProvider({
   //   null,
   //   3
   // );
+
+  let newThemingConfig;
 
   // prettier-ignore
   // const fontUrl = 'https://dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/' + fontFamily + '.ttf';
@@ -159,7 +172,8 @@ export function ThemeProvider({
 
   return (
     <ThemeContext.Provider
-      value={{themingConfig, setThemingConfig}}
+    // @ts-ignore
+      value={{themeCid, themingConfig, newThemingConfig, setThemingConfig}}
     >
       {children}
     </ThemeContext.Provider>
