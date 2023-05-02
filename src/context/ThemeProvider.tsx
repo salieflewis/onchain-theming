@@ -8,7 +8,7 @@ import {
 import { useContractRead } from "wagmi";
 import { JSONExtensionRegistry } from "../constants";
 import { JSONExtensionRegistryAbi } from "../abi";
-import { useWeb3Storage } from "../hooks";
+import { useRetrieve } from "../hooks";
 import { Hex, ThemingConfig } from "../types";
 
 /**
@@ -89,7 +89,7 @@ export function ThemeProvider({
   /**
    * Unpack the metadata stored on ipfs
    */
-  const { unpackedMetadata } = useWeb3Storage(themeCid);
+  const unpackedMetadata = useRetrieve(themeCid);
   /**
    * Set the `themeParamters` to the JSON fetched from the theme content object
    */

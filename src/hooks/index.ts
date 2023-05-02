@@ -1,1 +1,1 @@
-export { useWeb3Storage } from "./useWeb3Storage";
+export { useRetrieve, useStore } from "./web3Storage";
