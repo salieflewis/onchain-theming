@@ -1,25 +1,25 @@
-import { DrawerComposition } from '../drawer';
-import { useDrawer } from '../drawer/useDrawer';
-import { Palette } from './Palette';
-import { SaveChanges } from './SaveChanges';
-import { ThemingButton } from './ThemingButton';
+import { DrawerComposition } from "../drawer";
+import { useDrawer } from "../drawer/useDrawer";
+import { Palette } from "./Palette";
+import { SaveChanges } from "./SaveChanges";
+import { ThemingButton } from "./ThemingButton";
 
 export function Drawer() {
   return (
     <DrawerComposition
       trigger={<ThemingButton />}
       closeTrigger={
-        <button>
-          <span className='text-sm text-[#ACB1B9]'>Close</span>
+        <button type="button">
+          <span className="text-sm text-[#ACB1B9]">Close</span>
         </button>
       }
       content={
-        <div className='flex flex-col justify-between px-6 pt-2'>
+        <div className="flex flex-col justify-between px-6 pt-2">
           <Palette />
-          <SaveChanges />
+          {/* <SaveChanges /> */}
         </div>
       }
-      drawerName={'palette'}
-    ></DrawerComposition>
+      drawerName={"palette"}
+    />
   );
 }

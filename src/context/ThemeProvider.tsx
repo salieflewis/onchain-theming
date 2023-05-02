@@ -4,154 +4,173 @@ import {
   useContext,
   useState,
   useEffect,
-  memo,
-} from 'react';
-import { BigNumber } from 'ethers';
-import { useContractRead } from 'wagmi';
-import { platformThemeRegistryAbi } from '../abi';
-import { useWeb3Storage } from '../hooks';
-
-type ThemeProviderProps = {
-  children?: ReactNode;
-  platformIndex?: number;
-};
+} from "react";
+import { useContractRead } from "wagmi";
+import { JSONExtensionRegistry } from "../constants";
+import { JSONExtensionRegistryAbi } from "../abi";
+import { useWeb3Storage } from "../hooks";
+import { Hex, ThemingConfig } from "../types";
 
 /**
  * Assign default values to the context provider
  */
-const ThemeContext = createContext({
-  themeCID: '',
-  newMetadata: '',
-  background: '',
-  setBackground: (background: string) => {},
-  text: '',
-  setText: (text: string) => {},
-  accent: '',
-  setAccent: (accent: string) => {},
-  accentText: '',
-  setAccentText: (accentText: string) => {},
-  border: '',
-  setBorder: (border: string) => {},
-  fontFamily: '',
-  setFontFamily: (fontFamily: string) => {},
-});
+// const ThemeContext = createContext({
+//   themeCID: "",
+//   newMetadata: "",
+//   background: "",
+//   setBackground: (background: string) => {},
+//   text: "",
+//   setText: (text: string) => {},
+//   accent: "",
+//   setAccent: (accent: string) => {},
+//   accentText: "",
+//   setAccentText: (accentText: string) => {},
+//   border: "",
+//   setBorder: (border: string) => {},
+//   fontFamily: "",
+//   setFontFamily: (fontFamily: string) => {},
+// });
 
-export const ThemeProvider = memo(function ThemeProvider({
+const ThemeContext = createContext({});
+
+export function ThemeProvider({
   children,
-  platformIndex,
-}: ThemeProviderProps) {
-  /**
-   * Read the registry contract defined as an environment variable
-   */
-  const themeRegistry = process.env
-    .NEXT_PUBLIC_REGISTRY_CONTRACT as `0x${string}`;
-  /**
-   * Assign a state variable to the theme content object
-   */
-  const [themeCID, setThemeCID] = useState<string>('');
-  /**
-   * Set state variables for the parameters derived from the theme content object
-   */
-  const [background, setBackground] = useState<string>('');
-  const [text, setText] = useState<string>('');
-  const [accent, setAccent] = useState<string>('');
-  const [accentText, setAccentText] = useState<string>('');
-  const [border, setBorder] = useState<string>('');
-  const [fontFamily, setFontFamily] = useState<string>('');
+  targetAddress,
+}: {
+  children: ReactNode;
+  targetAddress: Hex;
+}) {
+  const [themeCid, setThemeCid] = useState<string>("");
+
+  const [themingConfig, setThemingConfig] = useState<ThemingConfig>({
+    theme: {
+      color: {
+        background: "",
+        text: "",
+        accent: "",
+        accentText: "",
+        border: "",
+      },
+      font: {
+        heading: {
+          fontFamily: "",
+          fontSize: "",
+          lineHeight: "",
+        },
+        body: {
+          fontFamily: "",
+          fontSize: "",
+          lineHeight: "",
+        },
+        caption: {
+          fontFamily: "",
+          fontSize: "",
+          lineHeight: "",
+        },
+      },
+    },
+  });
+
   /**
    * Read the desired ipfs string from the registry contract
    */
-  const contractRead = useContractRead({
-    address: themeRegistry,
-    abi: platformThemeRegistryAbi,
-    functionName: 'getPlatformTheme',
-    args: [BigNumber.from(platformIndex)],
-    onSuccess(data) {
-      setThemeCID(data.substring('ipfs://'.length));
+  useContractRead({
+    address: JSONExtensionRegistry,
+    abi: JSONExtensionRegistryAbi,
+    functionName: "getJSONExtension",
+    args: [targetAddress],
+    onSuccess(data: string) {
+      setThemeCid(data.substring("ipfs://".length));
     },
-    onError(error: any) {
+    onError(error: Error) {
       console.log(error);
     },
   });
   /**
    * Unpack the metadata stored on ipfs
    */
-  const { unpackedMetadata } = useWeb3Storage(themeCID);
+  const { unpackedMetadata } = useWeb3Storage(themeCid);
   /**
-   * Set the state variables to the values fetched from the theme content object
+   * Set the `themeParamters` to the JSON fetched from the theme content object
    */
   useEffect(() => {
     if (unpackedMetadata) {
-      const parsedMetadata = JSON.parse(unpackedMetadata);
-      setBackground(parsedMetadata.theme?.color.background);
-      setText(parsedMetadata.theme?.color.text);
-      setAccent(parsedMetadata.theme?.color.accent);
-      setAccentText(parsedMetadata.theme?.color.accentText);
-      setBorder(parsedMetadata.theme.color?.border);
-      setFontFamily(parsedMetadata.theme.font?.heading.fontFamily);
+      setThemingConfig(JSON.parse(unpackedMetadata));
     }
   }, [unpackedMetadata]);
+
   /**
    * Set the variables in the local stylesheet to their corresponding values
    */
-  document.documentElement.style.setProperty('--background', background);
-  document.documentElement.style.setProperty('--text', text);
-  document.documentElement.style.setProperty('--accent', accent);
-  document.documentElement.style.setProperty('--accentText', accentText);
-  document.documentElement.style.setProperty('--border', border);
-  document.documentElement.style.setProperty('--fontFamily', fontFamily);
+  useEffect(() => {
+    const setCSSVariables = (themingConfig: ThemingConfig) => {
+      if (themingConfig.theme) {
+        const { color, font } = themingConfig.theme;
 
-  const newMetadata = JSON.stringify(
-    {
-      theme: {
-        color: { background, text, accent, accentText, border },
-        font: { heading: { fontFamily } },
-      },
-    },
-    null,
-    3
-  );
+        // Set color properties
+        if (color) {
+          for (const [key, value] of Object.entries(color)) {
+            document.documentElement.style.setProperty(
+              `--${key}`,
+              value as string
+            );
+          }
+        }
+
+        // Set font properties
+        // if (font) {
+        //   for (const [fontType, fontProperties] of Object.entries(font)) {
+        //     for (const [key, value] of Object.entries(fontProperties)) {
+        //       const cssVarName = `${fontType}-${key}`;
+        //       document.documentElement.style.setProperty(
+        //         `--${cssVarName}`,
+        //         value
+        //       );
+        //     }
+        //   }
+        // }
+      }
+    };
+
+    setCSSVariables(themingConfig);
+  }, [themingConfig]);
+
+  // const newMetadata = JSON.stringify(
+  //   {
+  //     theme: {
+  //       color: { background, text, accent, accentText, border },
+  //       font: { heading: { fontFamily } },
+  //     },
+  //   },
+  //   null,
+  //   3
+  // );
 
   // prettier-ignore
-  const fontUrl = 'https://dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/' + fontFamily + '.ttf';
-  const rule = `@font-face {
-  font-family: '${fontFamily}';
-  src: url('${fontUrl}') format('woff2');
-  }`;
+  // const fontUrl = 'https://dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/' + fontFamily + '.ttf';
+  // const rule = `@font-face {
+  // font-family: '${fontFamily}';
+  // src: url('${fontUrl}') format('woff2');
+  // }`;
 
-  const style = document.createElement('style');
-  style.appendChild(document.createTextNode(rule));
-  document.head.appendChild(style);
+  // const style = document.createElement("style");
+  // style.appendChild(document.createTextNode(rule));
+  // document.head.appendChild(style);
 
   return (
     <ThemeContext.Provider
-      value={{
-        themeCID,
-        newMetadata,
-        background,
-        setBackground,
-        text,
-        setText,
-        accent,
-        setAccent,
-        accentText,
-        setAccentText,
-        border,
-        setBorder,
-        fontFamily,
-        setFontFamily,
-      }}
+      value={{themingConfig, setThemingConfig}}
     >
       {children}
     </ThemeContext.Provider>
   );
-});
+}
 
 // Access the context value of the ThemeProvider
 export const useThemeContext = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw Error('useThemeContext hook must be used within a ThemeProvider');
+    throw Error("useThemeContext hook must be used within a ThemeProvider");
   }
   return context;
 };
