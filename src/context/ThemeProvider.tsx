@@ -6,40 +6,17 @@ import {
   useContext,
   useState,
   useEffect,
-} from "react";
-import { useContractRead } from "wagmi";
-import { JSONExtensionRegistry } from "../constants";
-import { JSONExtensionRegistryAbi } from "../abi";
-import { useRetrieve } from "../hooks";
-import { Hex, ThemingConfig } from "../types";
-
-/**
- * Assign default values to the context provider
- */
-// const ThemeContext = createContext({
-//   themeCID: "",
-//   newMetadata: "",
-//   background: "",
-//   setBackground: (background: string) => {},
-//   text: "",
-//   setText: (text: string) => {},
-//   accent: "",
-//   setAccent: (accent: string) => {},
-//   accentText: "",
-//   setAccentText: (accentText: string) => {},
-//   border: "",
-//   setBorder: (border: string) => {},
-//   fontFamily: "",
-//   setFontFamily: (fontFamily: string) => {},
-// });
+} from 'react';
+import { useContractRead } from 'wagmi';
+import { JSONExtensionRegistry } from '../constants';
+import { JSONExtensionRegistryAbi } from '../abi';
+import { useRetrieve } from '../hooks';
+import { Hex, ThemingConfig } from '../types';
 
 export type ThemeProviderReturnTypes = {
   themeCid: string;
   themingConfig: ThemingConfig;
-  newThemingConfig: ThemingConfig;
-  // setThemingConfig: Dispatch<SetStateAction<ThemingConfig>>;
-  // rome-ignore lint: 
-  setThemingConfig: any;
+  setThemingConfig: Dispatch<SetStateAction<ThemingConfig>>;
 };
 
 const ThemeContext = createContext<ThemeProviderReturnTypes | null>(null);
@@ -51,58 +28,59 @@ export function ThemeProvider({
   children: ReactNode;
   targetAddress: Hex;
 }) {
-  const [themeCid, setThemeCid] = useState<string>("");
+  const [themeCid, setThemeCid] = useState<string>('');
 
   const [themingConfig, setThemingConfig] = useState<ThemingConfig>({
     theme: {
       color: {
-        background: "",
-        text: "",
-        accent: "",
-        accentText: "",
-        border: "",
+        background: '',
+        text: '',
+        accent: '',
+        accentText: '',
+        border: '',
       },
       font: {
         heading: {
-          fontFamily: "",
-          fontSize: "",
-          lineHeight: "",
+          fontFamily: '',
+          fontSize: '',
+          lineHeight: '',
         },
         body: {
-          fontFamily: "",
-          fontSize: "",
-          lineHeight: "",
+          fontFamily: '',
+          fontSize: '',
+          lineHeight: '',
         },
         caption: {
-          fontFamily: "",
-          fontSize: "",
-          lineHeight: "",
+          fontFamily: '',
+          fontSize: '',
+          lineHeight: '',
         },
       },
     },
   });
 
   /**
-   * Read the desired ipfs string from the registry contract
+   * Fetch the target JSON extension from the registry contract
    */
   useContractRead({
     address: JSONExtensionRegistry,
     abi: JSONExtensionRegistryAbi,
-    functionName: "getJSONExtension",
+    functionName: 'getJSONExtension',
     args: [targetAddress],
+    chainId: Number(process.env.NEXT_PUBLIC_CHAIN_ID),
     onSuccess(data: string) {
-      setThemeCid(data.substring("ipfs://".length));
+      setThemeCid(data.substring('ipfs://'.length));
     },
     onError(error: Error) {
       console.log(error);
     },
   });
   /**
-   * Unpack the metadata stored on ipfs
+   * Unpack the metadata stored on IPFS
    */
   const unpackedMetadata = useRetrieve(themeCid);
   /**
-   * Set the `themeParamters` to the JSON fetched from the theme content object
+   * Set the `themeParameters` to the retrieved JSON
    */
   useEffect(() => {
     if (unpackedMetadata) {
@@ -146,34 +124,9 @@ export function ThemeProvider({
     setCSSVariables(themingConfig);
   }, [themingConfig]);
 
-  // const newThemingConfig = JSON.stringify(
-  //   {
-  //     theme: {
-  //       color: { background, text, accent, accentText, border },
-  //       font: { heading: { fontFamily } },
-  //     },
-  //   },
-  //   null,
-  //   3
-  // );
-
-  let newThemingConfig;
-
-  // prettier-ignore
-  // const fontUrl = 'https://dweb.link/ipfs/bafybeih3dpotmeewpv543kzbwhxykm6pqtcw46i6lymcjhvblg6sv455se/' + fontFamily + '.ttf';
-  // const rule = `@font-face {
-  // font-family: '${fontFamily}';
-  // src: url('${fontUrl}') format('woff2');
-  // }`;
-
-  // const style = document.createElement("style");
-  // style.appendChild(document.createTextNode(rule));
-  // document.head.appendChild(style);
-
   return (
     <ThemeContext.Provider
-    // @ts-ignore
-      value={{themeCid, themingConfig, newThemingConfig, setThemingConfig}}
+      value={{ themeCid, themingConfig, setThemingConfig }}
     >
       {children}
     </ThemeContext.Provider>
@@ -184,7 +137,7 @@ export function ThemeProvider({
 export const useThemeContext = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw Error("useThemeContext hook must be used within a ThemeProvider");
+    throw Error('useThemeContext hook must be used within a ThemeProvider');
   }
   return context;
 };
