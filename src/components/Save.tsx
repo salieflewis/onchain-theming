@@ -1,12 +1,11 @@
-import * as React from "react";
-import { Web3Storage } from "web3.storage";
-import { useThemeContext } from "../context/ThemeProvider";
-import { JSONExtensionRegistry } from "../constants";
-import { JSONExtensionRegistryAbi } from "../abi";
-import { usePrepareContractWrite, useContractWrite, useAccount } from "wagmi";
-import { Hex } from "../types";
-import { useStore } from "../hooks";
-import { useModal } from "connectkit";
+import { useState, useEffect } from 'react';
+import { useThemeContext } from '../context/ThemeProvider';
+import { JSONExtensionRegistry } from '../constants';
+import { JSONExtensionRegistryAbi } from '../abi';
+import { usePrepareContractWrite, useContractWrite, useAccount } from 'wagmi';
+import { Hex } from '../types';
+import { useStore } from '../hooks';
+import { useModal } from 'connectkit';
 
 export function Save() {
   const { isConnected, address } = useAccount();
@@ -17,12 +16,12 @@ export function Save() {
 
   const { storeBlob, uri } = useStore(themingConfig);
 
-  const [themeReady, setThemeReady] = React.useState<boolean>(false);
+  const [themeReady, setThemeReady] = useState<boolean>(false);
 
   const { config, error } = usePrepareContractWrite({
     address: JSONExtensionRegistry,
     abi: JSONExtensionRegistryAbi,
-    functionName: "setJSONExtension",
+    functionName: 'setJSONExtension',
     args: [address as Hex, uri],
     onSuccess() {
       setThemeReady(true);

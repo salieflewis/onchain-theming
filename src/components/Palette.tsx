@@ -14,6 +14,8 @@ export function Palette() {
   //   console.log(fontFamily);
   // }
 
+  // console.log(themingConfig)
+
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-y-4 border-2 border-[#f6f6f6] py-4 px-6 rounded-xl">

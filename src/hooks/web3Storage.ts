@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { Web3Storage } from "web3.storage";
-import { ThemingConfig } from "../types";
+import { useState, useEffect } from 'react';
+import { Web3Storage } from 'web3.storage';
+import { ThemingConfig } from '../types';
 
 function getAccessToken() {
   return process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN;
@@ -13,7 +13,7 @@ function makeStorageClient() {
 const client = makeStorageClient();
 
 export function useRetrieve(cid: string) {
-  const [unpackedMetadata, setUnpackedMetadata] = useState<string>("");
+  const [unpackedMetadata, setUnpackedMetadata] = useState<string>('');
 
   useEffect(() => {
     async function retrieve() {
@@ -35,23 +35,24 @@ export function useRetrieve(cid: string) {
   return unpackedMetadata;
 }
 
-export function useStore(themeParameters: ThemingConfig) {
-  const [uri, setUri] = useState<string>("");
+export function useStore(themingConfig: ThemingConfig) {
+  const [uri, setUri] = useState<string>('');
 
   async function storeBlob() {
     try {
-      // @ts-ignore
-      const blobThemeData = new Blob([themeParameters]);
+      const blobThemeData = new Blob([JSON.stringify(themingConfig, null, 2)]);
       // @ts-ignore
       const cid = await client.put([blobThemeData], {
         wrapWithDirectory: false,
       });
-      const uri = `ipfs://${cid}`;
+      const storageDetails = {
+        uri: `ipfs://${cid}`,
+        link: `nftstorage.link/ipfs/${cid}`,
+      };
       /**
        * Set state variable to cid in uri format
        */
-      setUri(uri);
-      console.log("Uri:", uri);
+      setUri(storageDetails.uri);
     } catch (err) {
       console.error(err);
     }
